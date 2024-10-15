@@ -9,6 +9,224 @@ servers:
 - url: http://localhost:8000/api/v1
   description: Localhost
 
+paths:
+  /events:
+    post:
+      summary: Create a new event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: Event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+    get:
+      summary: Get all events
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+
+  /events/{id}:
+    get:
+      summary: Get an event by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Event found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Event not found
+    delete:
+      summary: Delete an event by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Event deleted
+        '404':
+          description: Event not found
+    patch:
+      summary: Update an event by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Event updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+
+  /users:
+    post:
+      summary: Create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /users/{id}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    delete:
+      summary: Delete a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+    patch:
+      summary: Update a user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /users/{id}/events:
+    get:
+      summary: Get all events organized by a user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+
+  /users/{id}/participations:
+    get:
+      summary: Get all events where a user have participated
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+
+    /users/{id}/subscriptions:
+      get:
+        summary: Get all events at which a user is subscribed
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: List of events
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Event'
+
+
+
 components:
   schemas:
     User:
@@ -33,7 +251,7 @@ components:
         - description
         - date
         - location
-        - organizer_id
+        - organizer
       properties:
         id:
           type: integer
@@ -46,26 +264,30 @@ components:
           format: date-time
         location:
           type: string
-        group_id:
-          type: integer
-        organizer_id:
-          type: integer
+        group:
+          type: string
+          description: 'Link to the group'
+        organizer:
+          type: string
+          description: 'Link to the organizer'
       
     Message:
       type: object
       required:
         - id
-        - user_id
-        - event_id
+        - sender
+        - event
         - date
         - content
       properties:
         id:
           type: integer
-        user_id:
-          type: integer
-        event_id:
-          type: integer
+        sender:
+          type: string
+          description: 'Link to the sender'
+        event:
+          type: string
+          description: 'Link to the event'
         date:
           type: string
           format: date-time
@@ -78,7 +300,7 @@ components:
         - id
         - name
         - description
-        - organizer_id
+        - organizer
       properties:
         id:
           type: integer
@@ -86,5 +308,6 @@ components:
           type: string
         description:
           type: string
-        organizer_id:
-          type: integer
+        organizer:
+          type: string
+          description: 'Link to the organizer'
