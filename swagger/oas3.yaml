@@ -8,3 +8,83 @@ info:
 servers:
 - url: http://localhost:8000/api/v1
   description: Localhost
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+
+    Event:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - date
+        - location
+        - organizer_id
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        date:
+          type: string
+          format: date-time
+        location:
+          type: string
+        group_id:
+          type: integer
+        organizer_id:
+          type: integer
+      
+    Message:
+      type: object
+      required:
+        - id
+        - user_id
+        - event_id
+        - date
+        - content
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        event_id:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        content:
+          type: string
+
+    Group:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - organizer_id
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        organizer_id:
+          type: integer
