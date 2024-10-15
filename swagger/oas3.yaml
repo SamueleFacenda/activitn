@@ -1,0 +1,10 @@
+openapi: 3.0.0
+info:
+  title: ActiviTN OpenAPI 3.0
+  description: API for managing events and groups.
+  license:
+    name: GPL
+  version: "1"
+servers:
+- url: http://localhost:8000/api/v1
+  description: Localhost
