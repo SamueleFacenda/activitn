@@ -9,9 +9,9 @@ app.use(json()); // Middleware to parse JSON bodies
 
 connectDB();
 
-app.use('/api/users', userRoutes);
-app.use('/api/events', eventRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/events', eventRoutes);
 
 
-const PORT = 3000;
+const PORT = 8000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
