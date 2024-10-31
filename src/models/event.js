@@ -8,6 +8,7 @@ const eventSchema = new Schema({
     location: {type: String, required: true},
     group: {type: String, required: false},
     organizer: {type: String, required: true},
+    attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
 export default mongoose.model('Event', eventSchema);

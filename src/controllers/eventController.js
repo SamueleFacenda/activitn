@@ -57,6 +57,46 @@ const patchEvent = async (req, res) => {
     }
 }
 
+const addUserToEvent = async (req, res) => {
+    const { eventId, userId } = req.params;
+
+    try {
+        const updatedEvent = await Event.findByIdAndUpdate(
+            eventId,
+            { $addToSet: { attendees: userId } }, // Use $addToSet to prevent duplicates
+            { new: true }
+        ).populate('attendees', 'name email'); // Populate attendee details
+
+        if (!updatedEvent) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        res.json(updatedEvent);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
+const removeUserFromEvent = async (req, res) => {
+    const { eventId, userId } = req.params;
+
+    try {
+        const updatedEvent = await Event.findByIdAndUpdate(
+            eventId,
+            { $pull: { attendees: userId } }, // Use $pull to remove the user ID
+            { new: true }
+        ).populate('attendees', 'name email'); // Populate attendee details
+
+        if (!updatedEvent) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        res.json(updatedEvent);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
 
 
-export default { createEvent, getAllEvents , getEvent, deleteEvent , patchEvent };
+
+export default { createEvent, getAllEvents , getEvent, deleteEvent , patchEvent , addUserToEvent , removeUserFromEvent };

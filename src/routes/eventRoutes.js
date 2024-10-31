@@ -9,5 +9,7 @@ eventRouter.get('/', eventController.getAllEvents);
 eventRouter.get('/:id', eventController.getEvent);
 eventRouter.delete('/:id', eventController.deleteEvent);
 eventRouter.patch('/:id', eventController.patchEvent);
+eventRouter.post('/:eventId/:userId', eventController.addUserToEvent);
+eventRouter.delete('/:eventId/:userId', eventController.removeUserFromEvent);
 
 export default eventRouter;

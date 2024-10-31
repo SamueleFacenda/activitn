@@ -45,7 +45,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: Event found
@@ -62,7 +62,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '204':
           description: Event deleted
@@ -75,7 +75,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         content:
           application/json:
@@ -88,6 +88,138 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Event'
+    
+  /events/{eventId}/{userId}:
+    post:
+      summary: Add a user to an event
+      description: Allows a user to join an event by adding their user ID to the event's attendees.
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: The ID of the event to join.
+          schema:
+            type: string
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user joining the event.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully added user to event
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User added to event successfully.
+                  event:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: 60d5ec49f0f6b620d8b8b9bb
+                      name:
+                        type: string
+                        example: "Music Concert"
+                      attendees:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            _id:
+                              type: string
+                              example: 60d5ec49f0f6b620d8b8b9cc
+                            name:
+                              type: string
+                              example: "John Doe"
+                            email:
+                              type: string
+                              example: "johndoe@example.com"
+        '404':
+          description: Event not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Event not found.
+    delete:
+      summary: Remove a user from an event
+      description: Allows removal of a user from an event's attendees by user ID.
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: The ID of the event from which to remove the user.
+          schema:
+            type: string
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user to be removed from the event.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully removed user from event
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User removed from event successfully.
+                  event:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: 1
+                      name:
+                        type: string
+                        example: "Music Concert"
+                      attendees:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            _id:
+                              type: string
+                              example: 2
+                            name:
+                              type: string
+                              example: "John Doe"
+                            email:
+                              type: string
+                              example: "johndoe@example.com"
+        '404':
+          description: Event or user not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Event or user not found.
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Server error.
 
   /users:
     post:
@@ -124,7 +256,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: User found
@@ -141,7 +273,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '204':
           description: User deleted
@@ -154,7 +286,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         content:
           application/json:
@@ -176,7 +308,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: List of events
@@ -195,7 +327,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: List of events
@@ -214,7 +346,7 @@ paths:
           in: path
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: List of events
@@ -237,7 +369,7 @@ components:
         - email
       properties:
         id:
-          type: integer
+          type: string
         name:
           type: string
         email:
@@ -254,7 +386,7 @@ components:
         - organizer
       properties:
         id:
-          type: integer
+          type: string
         name:
           type: string
         description:
@@ -281,7 +413,7 @@ components:
         - content
       properties:
         id:
-          type: integer
+          type: string
         sender:
           type: string
           description: 'Link to the sender'
@@ -303,7 +435,7 @@ components:
         - organizer
       properties:
         id:
-          type: integer
+          type: string
         name:
           type: string
         description:

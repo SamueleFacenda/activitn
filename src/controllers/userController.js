@@ -57,6 +57,32 @@ const patchUser = async (req, res) => {
     }
 }
 
+const getEventsOrganized = async (req, res) => {
+    try{
+        const userId = req.params.id;
+        const events = await Event.find({ organizer: userId });
+        res.json(events); // Send response
+    } catch(error){
+        res.status(500).json({ message: 'Server error', error: error.message });
+        console.error('Error fetching the events organized by the user:', error);
+    }
+}
+
+const getEventsJoined = async (req, res) => {
+    try{
+        const userId = req.params.id;
+        const events = await Event.find({ organizer: userId });
+        res.json(events); // Send response
+    } catch(error){
+        res.status(500).json({ message: 'Server error', error: error.message });
+        console.error('Error fetching the events organized by the user:', error);
+    }
+}
+
+
+
+
+
 
 
 
