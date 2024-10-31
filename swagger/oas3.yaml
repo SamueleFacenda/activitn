@@ -189,7 +189,7 @@ paths:
 
   /users/{id}/participations:
     get:
-      summary: Get all events where a user have participated
+      summary: Get all events where a user has participated
       parameters:
         - name: id
           in: path
@@ -206,24 +206,24 @@ paths:
                 items:
                   $ref: '#/components/schemas/Event'
 
-    /users/{id}/subscriptions:
-      get:
-        summary: Get all events at which a user is subscribed
-        parameters:
-          - name: id
-            in: path
-            required: true
-            schema:
-              type: integer
-        responses:
-          '200':
-            description: List of events
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Event'
+  /users/{id}/subscriptions:
+    get:
+      summary: Get all events at which a user is subscribed
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
 
 
 
