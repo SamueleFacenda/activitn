@@ -7,7 +7,7 @@ const eventSchema = new Schema({
     date: {type: Date, required: true},
     location: {type: String, required: true},
     group: {type: String, required: false},
-    organizer: {type: String, required: true},
+    organizer: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     attendees: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
