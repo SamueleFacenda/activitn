@@ -7,4 +7,4 @@ const groupSchema = new Schema({
     organizer: {type: String, required: true},
 });
 
-module.exports = mongoose.model('Group', groupSchema);
+export default mongoose.model('Group', groupSchema);

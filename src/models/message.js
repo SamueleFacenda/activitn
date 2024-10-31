@@ -8,4 +8,4 @@ const messageSchema = new Schema({
     content: {type: String, required: true}
 });
 
-module.exports = mongoose.model('Message', messageSchema);
+export default mongoose.model('Message', messageSchema);
