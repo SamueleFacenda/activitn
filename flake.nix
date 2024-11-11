@@ -64,8 +64,11 @@
               inherit (pkgs) nodejs;
             };
 
-            # buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-            # inherit (self.checks.${system}.pre-commit-check) shellHook;
+            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+            # hack to make linkNodeModulesHook work (it's not applied if there already is a shellHook)
+            shellHook = ''
+              runHook linkNodeModulesHook
+            '' + self.checks.${system}.pre-commit-check.shellHook;
           };
 
         };
@@ -75,7 +78,8 @@
             src = ./.;
             hooks = {
               nixpkgs-fmt.enable = true;
-              shellcheck.enable = true;
+              # eslint.enable = true;
+              # shellcheck.enable = true;
             };
           };
         };
