@@ -60,7 +60,9 @@
             ];
 
             npmDeps = pkgs.importNpmLock.buildNodeModules {
-              npmRoot = ./.;
+              # npmRoot = ./.; # avoid rebuilding when js code changes
+              package = pkgs.lib.importJSON ./package.json;
+              packageLock = pkgs.lib.importJSON ./package-lock.json;
               inherit (pkgs) nodejs;
             };
 
