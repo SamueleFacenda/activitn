@@ -1,4 +1,6 @@
 {
+  "name": "activitn",
+  "version": "0.0.1",
   "type": "module",
   "dependencies": {
     "express": "^4.21.1",
