@@ -1,0 +1,114 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.9.0">
+  <diagram name="Page-1" id="pPSWRQyb9XkAoyMon_7m">
+    <mxGraphModel dx="1406" dy="630" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-1" value="Accesso/Registrazione&lt;div&gt;utente&lt;/div&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="360" y="240" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-2" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-1" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-3" value="Gestione database" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="360" y="120" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-4" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-3" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-5" value="Classifica" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="360" y="360" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-6" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-5" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-7" value="Calcolatore score&lt;div&gt;(affidabilità e socialità)&lt;/div&gt;" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="360" y="480" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-8" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-7" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-9" value="Feed" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="561" y="120" width="159" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-10" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-9" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-11" value="Ricerca" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="561" y="240" width="159" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-12" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-11" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-13" value="Gestione profilo" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="560" y="360" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-14" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-13" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-15" value="Eventi di interesse" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="560" y="480" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-16" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-15" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-19" value="Eventi organizzati" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="160" y="120" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-20" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-19" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-21" value="Invio notifiche" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="160" y="240" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-22" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-21" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-23" value="Gestione gruppo" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="160" y="360" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-24" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-23" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-25" value="Acquisto pubblicità" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="160" y="480" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-26" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-25" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-29" value="Chat evento" style="html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="160" y="600" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WYqY5JkTP49NvEgID4Qn-30" value="" style="shape=module;jettyWidth=8;jettyHeight=4;" parent="WYqY5JkTP49NvEgID4Qn-29" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
