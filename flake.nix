@@ -56,15 +56,23 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               importNpmLock.hooks.linkNodeModulesHook
+              nodePackages.create-react-app
               nodejs
             ];
 
-            npmDeps = pkgs.importNpmLock.buildNodeModules {
-              # npmRoot = ./.; # avoid rebuilding when js code changes
-              package = pkgs.lib.importJSON ./package.json;
-              packageLock = pkgs.lib.importJSON ./package-lock.json;
+            npmDeps = (pkgs.importNpmLock.buildNodeModules {
+              npmRoot = ./.; # avoid rebuilding when js code changes
+              # package = pkgs.lib.importJSON ./package.json;
+              # packageLock = pkgs.lib.importJSON ./package-lock.json;
               inherit (pkgs) nodejs;
-            };
+              derivationArgs = {
+                postPatch = ''
+                  mkdir frontend backend
+                  cp --no-preserve=mode ${frontend/package.json} frontend/package.json
+                  cp --no-preserve=mode ${backend/package.json} backend/package.json
+                '';
+              };
+            });
 
             buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
             # hack to make linkNodeModulesHook work (it's not applied if there already is a shellHook)
