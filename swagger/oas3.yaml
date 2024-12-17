@@ -10,6 +10,51 @@ servers:
   description: Localhost
 
 paths:
+  /auth/register:
+    post:
+      summary: Creates and registers a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /auth/login:
+    post:
+      summary: Gives the JWT token to users with credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Login completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the user
+                  name:
+                    type: string
+                    description: Username
+                  email:
+                    type: string
+                    description: User's email address
+                  token:
+                    type: string
+                    description: JWT token returned after successful registration
+
   /events:
     post:
       summary: Create a new event
@@ -222,20 +267,6 @@ paths:
                     example: Server error.
 
   /users:
-    post:
-      summary: Create a new user
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '201':
-          description: User created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
     get:
       summary: Get all users
       responses:
@@ -373,6 +404,8 @@ components:
         name:
           type: string
         email:
+          type: string
+        password:
           type: string
 
     Event:
