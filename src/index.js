@@ -12,9 +12,6 @@ app.use(json()); // Middleware to parse JSON bodies
 
 connectDB();
 
-// Apply tokenChecker middleware globally
-//app.use(tokenChecker);
-
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', tokenChecker, userRoutes);
 app.use('/api/v1/events', tokenChecker, eventRoutes);
