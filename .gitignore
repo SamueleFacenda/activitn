@@ -4,3 +4,4 @@ prova.py
 /.pre-commit-config.yaml
 /.direnv
 /result
+.env
