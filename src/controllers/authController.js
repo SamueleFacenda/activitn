@@ -52,10 +52,14 @@ const login = async (req, res) => {
       var payload = { email: email }
       var options = { expiresIn: 86400 * 30 } // expires in 24 hours
       var token = jwt.sign(payload, SECRET_KEY, options);
-      res.status(200).json({ success: true, message: 'Login successful!',
-        token: token, 
-        email: user.email
-      });
+
+      var out = {
+        username: user.name,
+        email: user.email,
+        id: user.id,
+        token: token
+      };
+      res.status(200).json(out);
   
     } catch (error) {
       console.error(error);
