@@ -6,7 +6,6 @@ import {
   Grommet, 
   grommet as grommetTheme,
   Page,
-  ResponsiveContext,
 } from 'grommet';
 import { deepMerge } from "grommet/utils";
 
@@ -24,17 +23,20 @@ const pages = [
   {
     label: "Home",
     Icon: HomeRounded,
-    path: "/"
+    path: "/",
+    Element: Home
   },
   {
     label: "Events",
     Icon: Calendar,
-    path: "/events"
+    path: "/events",
+    Element: Events
   },
   {
     label: "User Settings",
     Icon: UserSettings,
-    path: "/usersettings"
+    path: "/usersettings",
+    Element: UserSettings
   }
 ];
 
@@ -65,14 +67,13 @@ function App() {
             appIcon={<GrommetIcon/>} 
             dark={dark} 
             setDark={setDark} />
-          <Box direction="row-responsive" flex>
+          <Box direction="row-responsive" flex fill>
             <SideBar pages={pages} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
             <Page>
-              
               <Routes>
-                <Route index element={<Home/>} />
-                <Route path="/events" element={<Events />} />
-                <Route path="/usersettings" element={<UserSettings />} />
+                {pages.map(({ path, Element }) => (
+                  <Route key={path} path={path} element={<Element />} />
+                ))}
               </Routes>
             </Page>
           </Box>

@@ -13,6 +13,9 @@ function SideBar({ pages, showSidebar, setShowSidebar }) {
             path={page.path}
             label={page.label}
             // icon={page.Icon}
+            fill="horizontal"
+            margin="none"
+            plain
         />
     ));
 
@@ -22,7 +25,7 @@ function SideBar({ pages, showSidebar, setShowSidebar }) {
                 <Box
                     fill="vertical"
                     width="sidebar" 
-                    background="light-2"
+                    background="background-contrast"
                     elevation="small"
                     align="center"
                     justify="center"
@@ -33,12 +36,13 @@ function SideBar({ pages, showSidebar, setShowSidebar }) {
             </Collapsible>
         ) : (
             <Sidebar
-                background="light-2"
+                background="background"
                 width="sidebar"
                 align="center"
                 fill="vertical"
                 justify="center"
                 elevation="small"
+                pad="none"
             >
                 {routeButtons}
             </Sidebar>
