@@ -1,15 +1,6 @@
 import User from '../models/user.js';
 import Event from '../models/event.js';
-
-const createUser = async (req, res) => {
-    const user = new User(req.body);
-    try {
-        await user.save();
-        res.status(201).json(user);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
+import bcrypt from 'bcryptjs';
 
 const getAllUsers = async (req, res) => {
     const users = await User.find();
@@ -47,7 +38,12 @@ const deleteUser = async (req, res) => {
 const patchUser = async (req, res) => {
     try{
         const userId = req.params.id;
-        const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
+        let updatedData = { ...req.body };
+        console.log(updatedData);
+        if (updatedData.password) {
+            updatedData.password = await bcrypt.hash(updatedData.password, 10);
+        }
+        const user = await User.findByIdAndUpdate(userId, updatedData, { new: true });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -94,11 +90,4 @@ const getEventsJoinedAndActive = async (req, res) => {
     }
 }
 
-
-
-
-
-
-
-
-export default { createUser, getAllUsers , getUser , deleteUser , patchUser , getEventsOrganized , getEventsJoined , getEventsJoinedAndActive};
+export default { getAllUsers , getUser , deleteUser , patchUser , getEventsOrganized , getEventsJoined , getEventsJoinedAndActive};
