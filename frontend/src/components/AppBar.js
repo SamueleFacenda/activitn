@@ -1,12 +1,36 @@
 import {
     Header, 
+    Button,
+    Text,
+    Box
 } from 'grommet';
 
-export const AppBar = (props) => (
-<Header
-    background="brand"
-    pad={{ left: "medium", right: "small", vertical: "small" }}
-    elevation="medium"
-    {...props}
-/>
-);
+import { useAuth } from '../hooks/Auth';
+import { Moon, Sun } from "grommet-icons";
+
+function AppBar({ appIcon, appName, toggleSideBar, dark, setDark }) {
+    const [authState, , logout] = useAuth();
+    const { isAuthenticated } = authState;
+
+    return (
+        <Header background="brand" pad="small" justify="between" direction="row" align="center">
+            <Button onClick={toggleSideBar}>
+                <Box
+                    flex={false}
+                    direction="row"
+                    align="center"
+                    margin={{ left: "small" }}>
+                {appIcon}
+                <Text size="large" margin={{ left: "small" }}>{appName}</Text>
+                </Box>
+            </Button>
+            {/* <Button
+            a11yTitle={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            icon={dark ? <Moon /> : <Sun />}
+            onClick={() => setDark(!dark)}
+            /> */}
+        </Header>
+    );
+};
+
+export { AppBar };

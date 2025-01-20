@@ -1,36 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { 
-  Button,
+  Box,
   Grommet, 
   grommet as grommetTheme,
-  Header, 
   Page,
-  Text 
+  ResponsiveContext,
 } from 'grommet';
 import { deepMerge } from "grommet/utils";
-import { Moon, Sun } from "grommet-icons";
 
-import { Home } from './pages';
-import { AppBar } from './components';
+import { Home, Events, UserSettings } from './pages';
+import { AppBar, SideBar } from './components';
+import { AuthProvider } from "./hooks/Auth";
+
+import {
+  Grommet as GrommetIcon,
+  Calendar,
+  HomeRounded,
+} from "grommet-icons";
 
 const pages = [
-  // {
-  //   label: "Servers",
-  //   Icon: ServersIcon,
-  //   path: "/servers"
-  // },
-  // {
-  //   label: "Users",
-  //   Icon: Group,
-  //   path: "/users"
-  // },
-  // {
-  //   label: "Settings",
-  //   Icon: SettingsOption,
-  //   path: "/settings"
-  // }
+  {
+    label: "Home",
+    Icon: HomeRounded,
+    path: "/"
+  },
+  {
+    label: "Events",
+    Icon: Calendar,
+    path: "/events"
+  },
+  {
+    label: "User Settings",
+    Icon: UserSettings,
+    path: "/usersettings"
+  }
 ];
 
 const theme = deepMerge(grommetTheme, {
@@ -48,25 +53,31 @@ const theme = deepMerge(grommetTheme, {
 
 function App() {
   const [dark, setDark] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <Router>
-      <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
-        <Page>
-
-          <AppBar>
-            <Text size="large">Activitn</Text>
-            <Button
-              a11yTitle={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              icon={dark ? <Moon /> : <Sun />}
-              onClick={() => setDark(!dark)}
-            />
-          </AppBar>
-          <Routes>
-            <Route index element={<Home />} />
-          </Routes>
-        </Page>
-      </Grommet>
+      <AuthProvider>
+        <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
+          <AppBar 
+            toggleSideBar={() => setShowSidebar(!showSidebar)} 
+            appName="Activitn" 
+            appIcon={<GrommetIcon/>} 
+            dark={dark} 
+            setDark={setDark} />
+          <Box direction="row-responsive" flex>
+            <SideBar pages={pages} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+            <Page>
+              
+              <Routes>
+                <Route index element={<Home/>} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/usersettings" element={<UserSettings />} />
+              </Routes>
+            </Page>
+          </Box>
+        </Grommet>
+      </AuthProvider>
     </Router>
   );
 }

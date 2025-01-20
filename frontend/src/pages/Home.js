@@ -11,9 +11,9 @@ import {
     ResponsiveContext,
   } from 'grommet';
 
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
-const CardTemplate = ({ title }) => {
+function CardTemplate({ title }) {
     const size = useContext(ResponsiveContext);
     return (
       <Card>
@@ -38,7 +38,7 @@ const CardTemplate = ({ title }) => {
   };
 
 
-export const Home = () => (
+const Home = () => (
     <PageContent>       
         <PageHeader title="Welcome to Grommet!" />
         <Grid columns="medium" gap="large" pad={{ bottom: "large" }}>
@@ -48,3 +48,5 @@ export const Home = () => (
         </Grid>
     </PageContent>
 )
+
+export { Home }
