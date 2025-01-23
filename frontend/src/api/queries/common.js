@@ -1,0 +1,25 @@
+"use strict";
+// generated with @7nohe/openapi-react-query-codegen@1.6.2 
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UseDefaultServiceGetUsersByIdSubscriptionsKeyFn = exports.useDefaultServiceGetUsersByIdSubscriptionsKey = exports.UseDefaultServiceGetUsersByIdParticipationsKeyFn = exports.useDefaultServiceGetUsersByIdParticipationsKey = exports.UseDefaultServiceGetUsersByIdEventsKeyFn = exports.useDefaultServiceGetUsersByIdEventsKey = exports.UseDefaultServiceGetUsersByIdKeyFn = exports.useDefaultServiceGetUsersByIdKey = exports.UseDefaultServiceGetUsersKeyFn = exports.useDefaultServiceGetUsersKey = exports.UseDefaultServiceGetEventsByIdKeyFn = exports.useDefaultServiceGetEventsByIdKey = exports.UseDefaultServiceGetEventsKeyFn = exports.useDefaultServiceGetEventsKey = void 0;
+exports.useDefaultServiceGetEventsKey = "DefaultServiceGetEvents";
+const UseDefaultServiceGetEventsKeyFn = (queryKey) => [exports.useDefaultServiceGetEventsKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [])];
+exports.UseDefaultServiceGetEventsKeyFn = UseDefaultServiceGetEventsKeyFn;
+exports.useDefaultServiceGetEventsByIdKey = "DefaultServiceGetEventsById";
+const UseDefaultServiceGetEventsByIdKeyFn = ({ id }, queryKey) => [exports.useDefaultServiceGetEventsByIdKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [{ id }])];
+exports.UseDefaultServiceGetEventsByIdKeyFn = UseDefaultServiceGetEventsByIdKeyFn;
+exports.useDefaultServiceGetUsersKey = "DefaultServiceGetUsers";
+const UseDefaultServiceGetUsersKeyFn = (queryKey) => [exports.useDefaultServiceGetUsersKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [])];
+exports.UseDefaultServiceGetUsersKeyFn = UseDefaultServiceGetUsersKeyFn;
+exports.useDefaultServiceGetUsersByIdKey = "DefaultServiceGetUsersById";
+const UseDefaultServiceGetUsersByIdKeyFn = ({ id }, queryKey) => [exports.useDefaultServiceGetUsersByIdKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [{ id }])];
+exports.UseDefaultServiceGetUsersByIdKeyFn = UseDefaultServiceGetUsersByIdKeyFn;
+exports.useDefaultServiceGetUsersByIdEventsKey = "DefaultServiceGetUsersByIdEvents";
+const UseDefaultServiceGetUsersByIdEventsKeyFn = ({ id }, queryKey) => [exports.useDefaultServiceGetUsersByIdEventsKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [{ id }])];
+exports.UseDefaultServiceGetUsersByIdEventsKeyFn = UseDefaultServiceGetUsersByIdEventsKeyFn;
+exports.useDefaultServiceGetUsersByIdParticipationsKey = "DefaultServiceGetUsersByIdParticipations";
+const UseDefaultServiceGetUsersByIdParticipationsKeyFn = ({ id }, queryKey) => [exports.useDefaultServiceGetUsersByIdParticipationsKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [{ id }])];
+exports.UseDefaultServiceGetUsersByIdParticipationsKeyFn = UseDefaultServiceGetUsersByIdParticipationsKeyFn;
+exports.useDefaultServiceGetUsersByIdSubscriptionsKey = "DefaultServiceGetUsersByIdSubscriptions";
+const UseDefaultServiceGetUsersByIdSubscriptionsKeyFn = ({ id }, queryKey) => [exports.useDefaultServiceGetUsersByIdSubscriptionsKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [{ id }])];
+exports.UseDefaultServiceGetUsersByIdSubscriptionsKeyFn = UseDefaultServiceGetUsersByIdSubscriptionsKeyFn;
