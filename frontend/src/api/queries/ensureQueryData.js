@@ -1,5 +1,5 @@
 "use strict";
-// generated with @7nohe/openapi-react-query-codegen@1.6.2 
+// generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -34,20 +34,20 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ensureUseDefaultServiceGetUsersByIdSubscriptionsData = exports.ensureUseDefaultServiceGetUsersByIdParticipationsData = exports.ensureUseDefaultServiceGetUsersByIdEventsData = exports.ensureUseDefaultServiceGetUsersByIdData = exports.ensureUseDefaultServiceGetUsersData = exports.ensureUseDefaultServiceGetEventsByIdData = exports.ensureUseDefaultServiceGetEventsData = void 0;
+exports.ensureUseGetUsersByIdSubscriptionsData = exports.ensureUseGetUsersByIdParticipationsData = exports.ensureUseGetUsersByIdEventsData = exports.ensureUseGetUsersByIdData = exports.ensureUseGetUsersData = exports.ensureUseGetEventsByIdData = exports.ensureUseGetEventsData = void 0;
 const services_gen_1 = require("../requests/services.gen");
 const Common = __importStar(require("./common"));
-const ensureUseDefaultServiceGetEventsData = (queryClient) => queryClient.ensureQueryData({ queryKey: Common.UseDefaultServiceGetEventsKeyFn(), queryFn: () => services_gen_1.DefaultService.getEvents() });
-exports.ensureUseDefaultServiceGetEventsData = ensureUseDefaultServiceGetEventsData;
-const ensureUseDefaultServiceGetEventsByIdData = (queryClient, { id }) => queryClient.ensureQueryData({ queryKey: Common.UseDefaultServiceGetEventsByIdKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getEventsById({ id }) });
-exports.ensureUseDefaultServiceGetEventsByIdData = ensureUseDefaultServiceGetEventsByIdData;
-const ensureUseDefaultServiceGetUsersData = (queryClient) => queryClient.ensureQueryData({ queryKey: Common.UseDefaultServiceGetUsersKeyFn(), queryFn: () => services_gen_1.DefaultService.getUsers() });
-exports.ensureUseDefaultServiceGetUsersData = ensureUseDefaultServiceGetUsersData;
-const ensureUseDefaultServiceGetUsersByIdData = (queryClient, { id }) => queryClient.ensureQueryData({ queryKey: Common.UseDefaultServiceGetUsersByIdKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersById({ id }) });
-exports.ensureUseDefaultServiceGetUsersByIdData = ensureUseDefaultServiceGetUsersByIdData;
-const ensureUseDefaultServiceGetUsersByIdEventsData = (queryClient, { id }) => queryClient.ensureQueryData({ queryKey: Common.UseDefaultServiceGetUsersByIdEventsKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersByIdEvents({ id }) });
-exports.ensureUseDefaultServiceGetUsersByIdEventsData = ensureUseDefaultServiceGetUsersByIdEventsData;
-const ensureUseDefaultServiceGetUsersByIdParticipationsData = (queryClient, { id }) => queryClient.ensureQueryData({ queryKey: Common.UseDefaultServiceGetUsersByIdParticipationsKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersByIdParticipations({ id }) });
-exports.ensureUseDefaultServiceGetUsersByIdParticipationsData = ensureUseDefaultServiceGetUsersByIdParticipationsData;
-const ensureUseDefaultServiceGetUsersByIdSubscriptionsData = (queryClient, { id }) => queryClient.ensureQueryData({ queryKey: Common.UseDefaultServiceGetUsersByIdSubscriptionsKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersByIdSubscriptions({ id }) });
-exports.ensureUseDefaultServiceGetUsersByIdSubscriptionsData = ensureUseDefaultServiceGetUsersByIdSubscriptionsData;
+const ensureUseGetEventsData = (queryClient, clientOptions = {}) => queryClient.ensureQueryData({ queryKey: Common.UseGetEventsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getEvents)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.ensureUseGetEventsData = ensureUseGetEventsData;
+const ensureUseGetEventsByIdData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetEventsByIdKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getEventsById)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.ensureUseGetEventsByIdData = ensureUseGetEventsByIdData;
+const ensureUseGetUsersData = (queryClient, clientOptions = {}) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsers)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.ensureUseGetUsersData = ensureUseGetUsersData;
+const ensureUseGetUsersByIdData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersByIdKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersById)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.ensureUseGetUsersByIdData = ensureUseGetUsersByIdData;
+const ensureUseGetUsersByIdEventsData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersByIdEventsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersByIdEvents)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.ensureUseGetUsersByIdEventsData = ensureUseGetUsersByIdEventsData;
+const ensureUseGetUsersByIdParticipationsData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersByIdParticipationsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersByIdParticipations)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.ensureUseGetUsersByIdParticipationsData = ensureUseGetUsersByIdParticipationsData;
+const ensureUseGetUsersByIdSubscriptionsData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersByIdSubscriptionsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersByIdSubscriptions)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.ensureUseGetUsersByIdSubscriptionsData = ensureUseGetUsersByIdSubscriptionsData;

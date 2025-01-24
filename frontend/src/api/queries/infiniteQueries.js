@@ -1,2 +1,2 @@
 "use strict";
-// generated with @7nohe/openapi-react-query-codegen@1.6.2 
+// generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3 
