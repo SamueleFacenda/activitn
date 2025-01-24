@@ -1,5 +1,5 @@
 "use strict";
-// generated with @7nohe/openapi-react-query-codegen@1.6.2 
+// generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -34,21 +34,21 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useDefaultServiceGetUsersByIdSubscriptionsSuspense = exports.useDefaultServiceGetUsersByIdParticipationsSuspense = exports.useDefaultServiceGetUsersByIdEventsSuspense = exports.useDefaultServiceGetUsersByIdSuspense = exports.useDefaultServiceGetUsersSuspense = exports.useDefaultServiceGetEventsByIdSuspense = exports.useDefaultServiceGetEventsSuspense = void 0;
+exports.useGetUsersByIdSubscriptionsSuspense = exports.useGetUsersByIdParticipationsSuspense = exports.useGetUsersByIdEventsSuspense = exports.useGetUsersByIdSuspense = exports.useGetUsersSuspense = exports.useGetEventsByIdSuspense = exports.useGetEventsSuspense = void 0;
 const react_query_1 = require("@tanstack/react-query");
 const services_gen_1 = require("../requests/services.gen");
 const Common = __importStar(require("./common"));
-const useDefaultServiceGetEventsSuspense = (queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseDefaultServiceGetEventsKeyFn(queryKey), queryFn: () => services_gen_1.DefaultService.getEvents() }, options));
-exports.useDefaultServiceGetEventsSuspense = useDefaultServiceGetEventsSuspense;
-const useDefaultServiceGetEventsByIdSuspense = ({ id }, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseDefaultServiceGetEventsByIdKeyFn({ id }, queryKey), queryFn: () => services_gen_1.DefaultService.getEventsById({ id }) }, options));
-exports.useDefaultServiceGetEventsByIdSuspense = useDefaultServiceGetEventsByIdSuspense;
-const useDefaultServiceGetUsersSuspense = (queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseDefaultServiceGetUsersKeyFn(queryKey), queryFn: () => services_gen_1.DefaultService.getUsers() }, options));
-exports.useDefaultServiceGetUsersSuspense = useDefaultServiceGetUsersSuspense;
-const useDefaultServiceGetUsersByIdSuspense = ({ id }, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseDefaultServiceGetUsersByIdKeyFn({ id }, queryKey), queryFn: () => services_gen_1.DefaultService.getUsersById({ id }) }, options));
-exports.useDefaultServiceGetUsersByIdSuspense = useDefaultServiceGetUsersByIdSuspense;
-const useDefaultServiceGetUsersByIdEventsSuspense = ({ id }, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseDefaultServiceGetUsersByIdEventsKeyFn({ id }, queryKey), queryFn: () => services_gen_1.DefaultService.getUsersByIdEvents({ id }) }, options));
-exports.useDefaultServiceGetUsersByIdEventsSuspense = useDefaultServiceGetUsersByIdEventsSuspense;
-const useDefaultServiceGetUsersByIdParticipationsSuspense = ({ id }, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseDefaultServiceGetUsersByIdParticipationsKeyFn({ id }, queryKey), queryFn: () => services_gen_1.DefaultService.getUsersByIdParticipations({ id }) }, options));
-exports.useDefaultServiceGetUsersByIdParticipationsSuspense = useDefaultServiceGetUsersByIdParticipationsSuspense;
-const useDefaultServiceGetUsersByIdSubscriptionsSuspense = ({ id }, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseDefaultServiceGetUsersByIdSubscriptionsKeyFn({ id }, queryKey), queryFn: () => services_gen_1.DefaultService.getUsersByIdSubscriptions({ id }) }, options));
-exports.useDefaultServiceGetUsersByIdSubscriptionsSuspense = useDefaultServiceGetUsersByIdSubscriptionsSuspense;
+const useGetEventsSuspense = (clientOptions = {}, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseGetEventsKeyFn(clientOptions, queryKey), queryFn: () => (0, services_gen_1.getEvents)(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+exports.useGetEventsSuspense = useGetEventsSuspense;
+const useGetEventsByIdSuspense = (clientOptions, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseGetEventsByIdKeyFn(clientOptions, queryKey), queryFn: () => (0, services_gen_1.getEventsById)(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+exports.useGetEventsByIdSuspense = useGetEventsByIdSuspense;
+const useGetUsersSuspense = (clientOptions = {}, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseGetUsersKeyFn(clientOptions, queryKey), queryFn: () => (0, services_gen_1.getUsers)(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+exports.useGetUsersSuspense = useGetUsersSuspense;
+const useGetUsersByIdSuspense = (clientOptions, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseGetUsersByIdKeyFn(clientOptions, queryKey), queryFn: () => (0, services_gen_1.getUsersById)(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+exports.useGetUsersByIdSuspense = useGetUsersByIdSuspense;
+const useGetUsersByIdEventsSuspense = (clientOptions, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseGetUsersByIdEventsKeyFn(clientOptions, queryKey), queryFn: () => (0, services_gen_1.getUsersByIdEvents)(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+exports.useGetUsersByIdEventsSuspense = useGetUsersByIdEventsSuspense;
+const useGetUsersByIdParticipationsSuspense = (clientOptions, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseGetUsersByIdParticipationsKeyFn(clientOptions, queryKey), queryFn: () => (0, services_gen_1.getUsersByIdParticipations)(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+exports.useGetUsersByIdParticipationsSuspense = useGetUsersByIdParticipationsSuspense;
+const useGetUsersByIdSubscriptionsSuspense = (clientOptions, queryKey, options) => (0, react_query_1.useSuspenseQuery)(Object.assign({ queryKey: Common.UseGetUsersByIdSubscriptionsKeyFn(clientOptions, queryKey), queryFn: () => (0, services_gen_1.getUsersByIdSubscriptions)(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+exports.useGetUsersByIdSubscriptionsSuspense = useGetUsersByIdSubscriptionsSuspense;

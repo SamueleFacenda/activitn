@@ -1,5 +1,5 @@
 "use strict";
-// generated with @7nohe/openapi-react-query-codegen@1.6.2 
+// generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -34,20 +34,20 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.prefetchUseDefaultServiceGetUsersByIdSubscriptions = exports.prefetchUseDefaultServiceGetUsersByIdParticipations = exports.prefetchUseDefaultServiceGetUsersByIdEvents = exports.prefetchUseDefaultServiceGetUsersById = exports.prefetchUseDefaultServiceGetUsers = exports.prefetchUseDefaultServiceGetEventsById = exports.prefetchUseDefaultServiceGetEvents = void 0;
+exports.prefetchUseGetUsersByIdSubscriptions = exports.prefetchUseGetUsersByIdParticipations = exports.prefetchUseGetUsersByIdEvents = exports.prefetchUseGetUsersById = exports.prefetchUseGetUsers = exports.prefetchUseGetEventsById = exports.prefetchUseGetEvents = void 0;
 const services_gen_1 = require("../requests/services.gen");
 const Common = __importStar(require("./common"));
-const prefetchUseDefaultServiceGetEvents = (queryClient) => queryClient.prefetchQuery({ queryKey: Common.UseDefaultServiceGetEventsKeyFn(), queryFn: () => services_gen_1.DefaultService.getEvents() });
-exports.prefetchUseDefaultServiceGetEvents = prefetchUseDefaultServiceGetEvents;
-const prefetchUseDefaultServiceGetEventsById = (queryClient, { id }) => queryClient.prefetchQuery({ queryKey: Common.UseDefaultServiceGetEventsByIdKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getEventsById({ id }) });
-exports.prefetchUseDefaultServiceGetEventsById = prefetchUseDefaultServiceGetEventsById;
-const prefetchUseDefaultServiceGetUsers = (queryClient) => queryClient.prefetchQuery({ queryKey: Common.UseDefaultServiceGetUsersKeyFn(), queryFn: () => services_gen_1.DefaultService.getUsers() });
-exports.prefetchUseDefaultServiceGetUsers = prefetchUseDefaultServiceGetUsers;
-const prefetchUseDefaultServiceGetUsersById = (queryClient, { id }) => queryClient.prefetchQuery({ queryKey: Common.UseDefaultServiceGetUsersByIdKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersById({ id }) });
-exports.prefetchUseDefaultServiceGetUsersById = prefetchUseDefaultServiceGetUsersById;
-const prefetchUseDefaultServiceGetUsersByIdEvents = (queryClient, { id }) => queryClient.prefetchQuery({ queryKey: Common.UseDefaultServiceGetUsersByIdEventsKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersByIdEvents({ id }) });
-exports.prefetchUseDefaultServiceGetUsersByIdEvents = prefetchUseDefaultServiceGetUsersByIdEvents;
-const prefetchUseDefaultServiceGetUsersByIdParticipations = (queryClient, { id }) => queryClient.prefetchQuery({ queryKey: Common.UseDefaultServiceGetUsersByIdParticipationsKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersByIdParticipations({ id }) });
-exports.prefetchUseDefaultServiceGetUsersByIdParticipations = prefetchUseDefaultServiceGetUsersByIdParticipations;
-const prefetchUseDefaultServiceGetUsersByIdSubscriptions = (queryClient, { id }) => queryClient.prefetchQuery({ queryKey: Common.UseDefaultServiceGetUsersByIdSubscriptionsKeyFn({ id }), queryFn: () => services_gen_1.DefaultService.getUsersByIdSubscriptions({ id }) });
-exports.prefetchUseDefaultServiceGetUsersByIdSubscriptions = prefetchUseDefaultServiceGetUsersByIdSubscriptions;
+const prefetchUseGetEvents = (queryClient, clientOptions) => queryClient.prefetchQuery({ queryKey: Common.UseGetEventsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getEvents)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.prefetchUseGetEvents = prefetchUseGetEvents;
+const prefetchUseGetEventsById = (queryClient, clientOptions) => queryClient.prefetchQuery({ queryKey: Common.UseGetEventsByIdKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getEventsById)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.prefetchUseGetEventsById = prefetchUseGetEventsById;
+const prefetchUseGetUsers = (queryClient, clientOptions = {}) => queryClient.prefetchQuery({ queryKey: Common.UseGetUsersKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsers)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.prefetchUseGetUsers = prefetchUseGetUsers;
+const prefetchUseGetUsersById = (queryClient, clientOptions) => queryClient.prefetchQuery({ queryKey: Common.UseGetUsersByIdKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersById)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.prefetchUseGetUsersById = prefetchUseGetUsersById;
+const prefetchUseGetUsersByIdEvents = (queryClient, clientOptions) => queryClient.prefetchQuery({ queryKey: Common.UseGetUsersByIdEventsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersByIdEvents)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.prefetchUseGetUsersByIdEvents = prefetchUseGetUsersByIdEvents;
+const prefetchUseGetUsersByIdParticipations = (queryClient, clientOptions) => queryClient.prefetchQuery({ queryKey: Common.UseGetUsersByIdParticipationsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersByIdParticipations)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.prefetchUseGetUsersByIdParticipations = prefetchUseGetUsersByIdParticipations;
+const prefetchUseGetUsersByIdSubscriptions = (queryClient, clientOptions) => queryClient.prefetchQuery({ queryKey: Common.UseGetUsersByIdSubscriptionsKeyFn(clientOptions), queryFn: () => (0, services_gen_1.getUsersByIdSubscriptions)(Object.assign({}, clientOptions)).then(response => response.data) });
+exports.prefetchUseGetUsersByIdSubscriptions = prefetchUseGetUsersByIdSubscriptions;
