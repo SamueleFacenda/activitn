@@ -9,7 +9,7 @@ import {
 } from 'grommet';
 import { deepMerge } from "grommet/utils";
 
-import { Home, Events, UserSettings } from './pages';
+import { Home, Events, UserSettings, Login } from './pages';
 import { AppBar, SideBar } from './components';
 import { AuthProvider } from "./hooks/Auth";
 
@@ -37,6 +37,12 @@ const pages = [
     Icon: UserSettings,
     path: "/usersettings",
     Element: UserSettings
+  },
+  { // for now put the login page accessible from the sidebar
+    label: "Login",
+    Icon: UserSettings, // TODO: Change this icon
+    path: "/login",
+    Element: Login
   }
 ];
 

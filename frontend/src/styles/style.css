@@ -1,0 +1,10 @@
+/* Base styles for light and dark themes */
+.light {
+  color: #333;
+  text-align: center;
+}
+
+.dark {
+  color: #f9f9f9;
+  text-align: center;
+}

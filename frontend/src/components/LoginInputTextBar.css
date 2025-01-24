@@ -1,0 +1,54 @@
+.input-wrapper {
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.input-text-login {
+  width: 100%;
+  padding: 10px 0 5px;
+  border: none;
+  border-bottom: 2px solid #555;
+  /* border: 1px solid #007BFF; */
+  height: 30px;
+  font-size: 20px;
+  outline: none;
+  background-color: transparent;
+  /* focus change*/
+  cursor: pointer;
+}
+
+.dark .input-text-login {
+  color: #f9f9f9;
+}
+
+.input-text-login:placeholder-shown + label { /*if it's empty --> show placeholder --> hide the label*/
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+}
+
+.input-text-login:not(:placeholder-shown) + label {
+  top: -20px;
+  font-size: 12px;
+  color: #007BFF;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+}
+
+.dark .input-text-login:not(:placeholder-shown) + label {
+  color: #3efb6d;
+}
+
+.label-login {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  font-size: 16px;
+  color: #aaa;
+}
+
+.dark .label-login {
+  color: #f9f9f9;
+}
