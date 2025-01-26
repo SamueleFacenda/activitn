@@ -24,11 +24,11 @@ function AppBar({ appIcon, appName, toggleSideBar, dark, setDark }) {
                 <Text size="large" margin={{ left: "small" }}>{appName}</Text>
                 </Box>
             </Button>
-            {/* <Button
+            <Button
             a11yTitle={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             icon={dark ? <Moon /> : <Sun />}
             onClick={() => setDark(!dark)}
-            /> */}
+            />
         </Header>
     );
 };

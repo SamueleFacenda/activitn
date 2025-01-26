@@ -1,27 +1,25 @@
-import React, {useState} from 'react';
-/**
- * @param {Object} props
- * @param {boolean} props.theme - The theme of the component (dark or light)
- * @param {function} props.setText - The function to set the text of a 'State'
- * @param {string} props.placeHolder - The placeholder text for the input
- * 
- * @returns Component - Return a input type="text" with a placeholder, used for login
- */
+import React, { useState } from "react";
+import { Box, TextInput, Text } from "grommet";
+import "./LoginInputTextBar.css";
 
-import './LoginInputTextBar.css';
-
-export default function LoginComponentTextBar({ typeInput, setText, value, placeHolder }) {
-
+export default function LoginComponentTextBar({
+  typeInput,
+  setText,
+  value,
+  placeHolder,
+}) {
   return (
-    <div className="input-wrapper">
-      <input
+    <Box className={`input-wrapper`} width="medium" pad={{ vertical: "small" }}>
+      <TextInput
         className="input-text-login"
-        onChange={e => setText(e.target.value)}
         type={typeInput}
-        placeholder={placeHolder}
+        placeholder={!value && placeHolder}
         value={value}
+        onChange={(e) => setText(e.target.value)}
       />
-      <label className="label-login">{placeHolder}</label>
-    </div>
+      <Text className={`label-login ${!value ? "hidden" : "visible"}`}>
+        {placeHolder}
+      </Text>
+    </Box>
   );
 }

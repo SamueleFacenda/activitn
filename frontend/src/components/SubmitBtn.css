@@ -8,6 +8,7 @@
   font-size: 16px;
   font-family: 'Arial', sans-serif;
   cursor: pointer;
+  width: max-content;
   transition: background-color 0.3s ease, transform 0.3s ease;
   opacity: 0.8;
 }
@@ -25,12 +26,3 @@
 .submit-btn:focus {
   outline: none;
 }
-
-/** Dark Mode **/
-/* .dark .submit-btn {
-  background-color: #3efb6d;
-}
-
-.dark .submit-btn:hover {
-  background-color: #3efb6d;
-} */

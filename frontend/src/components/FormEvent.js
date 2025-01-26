@@ -1,10 +1,26 @@
 import { useState, React } from "react";
 
 import "./FormEvent.css";
-import "../styles/style.css";
-import SubmitBtn from "../components/SubmitBtn";
+import SubmitBtn from "./SubmitBtn";
+import { TextInput, Box, Grommet, Form, TextArea, Text } from "grommet";
 
-export default function FormEvent({ theme }) {
+const customTheme = {
+  global: {
+    colors: {
+      border: {
+        light: '#cccccc', // Light theme color for border
+        dark: '#ffffff',  // Dark theme color for border
+      },
+    },
+    focus: {
+      border: {
+        color: 'border', // dynamic border color based on the theme
+      },
+    },
+  },
+};
+
+export default function FormEvent() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -14,88 +30,87 @@ export default function FormEvent({ theme }) {
   function getTextInput(stateName, setState, placeholder) {
     // return a text input that is "connected" to a state passed as a parameter
     return (
-      <div className="input-section">
-        <input
+      <Box margin={{ top: "20px" }} align="center">
+        <TextInput
           type="text"
           value={stateName}
           onChange={(e) => setState(e.target.value)}
           placeholder={placeholder}
           required
           className="text-input"
-        />
-      </div>
+          width="medium"
+       />
+      </Box>
     );
   }
 
   return (
-    <div className={theme ? "dark" : "light"}>
-      <div className="form-event">
-        <h1>Create Event</h1>
-        <form>
-          <div className="row-form">
-            <label className="label-form-event" htmlFor="name">
-              Event Name
-            </label>
+    <Grommet theme={customTheme}>
+      <Box
+        pad="large"
+        align="center"
+        border={{ size: "small" }}
+        round="large"
+      >
+        <Text size="large">Create Event</Text>
+        <Form>
+          <Box margin={{ top: "20px" }} align="center">
+            <Text>Event Name</Text>
             {getTextInput(name, setName, "Enter event name")}
-          </div>
+          </Box>
 
-          <div className="row-form">
-            <label className="label-form-event" htmlFor="description">
-              Description
-            </label>
-            <div className="input-section">
-              <textarea
+          <Box margin={{ top: "20px" }} align="center">
+            <Text>Description</Text>
+            <Box margin={{ top: "20px" }}>
+              <TextArea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Enter event description"
                 required
                 className="description-textarea"
-              ></textarea>
-            </div>
-          </div>
-          <div className="row-form">
-            <label className="label-form-event" htmlFor="date">
-              Date
-            </label>
-            <div className="input-section">
-              <input
+                style={{ width: "500px", borderWidth: '1px' }}  
+              />
+            </Box>
+          </Box>
+          <Box margin={{ top: "20px" }} align="center">
+            <Text>Date</Text>
+            <Box margin={{ top: "20px" }}>
+              <TextInput
                 type="datetime-local"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
                 className="date-input"
+                style={{ borderWidth: '1px' }}
               />
-            </div>
-          </div>
+            </Box>
+          </Box>
 
-          <div className="row-form">
-            <label className="label-form-event" htmlFor="location">
-              Location
-            </label>
+          <Box margin={{ top: "20px" }} align="center">
+            <Text>Location</Text>
             {getTextInput(location, setLocation, "Enter event location")}
-          </div>
+          </Box>
 
-          <div className="row-form">
-            <label className="label-form-event" htmlFor="group">
-              Group Size
-            </label>
-            <div className="input-section">
-              <input
+          <Box margin={{ top: "20px" }} align="center">
+            <Text>Group Size</Text>
+            <Box margin={{ top: "20px" }}>
+              <TextInput
                 type="number"
                 value={group}
                 onChange={(e) => setGroup(e.target.value)}
                 required
                 min="2" // group size should be at least 1 --> doesn't make sense to have a group of 1
                 className="number-input"
+                style={{ borderWidth: '1px' }}
               />
-            </div>            
-          </div>
+            </Box>
+          </Box>
 
-          <div className="row-form">
+          <Box margin={{ top: "20px" }} align="center">
             <SubmitBtn text="Create Event" />
-          </div>
-        </form>
-      </div>
-    </div>
+          </Box>
+        </Form>
+      </Box>
+    </Grommet>
   );
 }

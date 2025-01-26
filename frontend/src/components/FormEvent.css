@@ -1,77 +1,41 @@
-/* Form Event Block */
-.form-event {
-  background-color: #f9f9f9;
-  padding: 20px;
-  width: 600px;
-  margin: 0 auto;
-  border-radius: 40px;
-}
-
-.dark .form-event {
-  background-color: #333;
-}
-
-.row-form {
-  margin-top: 30px;
-}
-
-.input-section {
-  margin-top: 20px;
-}
-
 /* Description Textarea */
 .description-textarea {
   padding: 12px 15px;
-  border: 2px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
-  font-family: 'Arial', sans-serif;
   line-height: 1.5;
   resize: vertical;
-  width: 500px;
   height: 150px;
-  background-color: transparent;
   opacity: 0.7;
   transition: all 0.3s ease;
 }
 
 .description-textarea:focus {
-  border: 2px solid #37b8f4;
   outline: none;
   opacity: 1;
   transform: translateY(10px);
 }
 
 .description-textarea::placeholder {
-  color: #888;
   font-style: italic;
-}
-
-.dark .description-textarea {
-  color: #f9f9f9;
 }
 
 /* Date Input */
 .date-input {
   padding: 10px;
-  border: 2px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
-  font-family: 'Arial', sans-serif;
-  background-color: transparent;
   opacity: 0.7;
   transition: all 0.3s ease;
 }
 
 .date-input:focus {
-  border: 2px solid #37b8f4;
-  background-color: transparent;
   opacity: 1;
   outline: none;
 }
 
 .date-input::-webkit-calendar-picker-indicator {
-  background-color: red;
+  background-color: lime;
   border-radius: 50%;
   padding: 5px;
 }
@@ -81,25 +45,13 @@
   font-style: italic;
 }
 
-.dark .date-input {
-  color: #f9f9f9;
-}
-
 /* Text Input (e.g. for names, email) */
 .text-input {
-  padding: 10px 15px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  width: 300px;
-  font-family: 'Arial', sans-serif;
-  background-color: transparent;
   opacity: 0.7;
   transition: all 0.3s ease, transform 0.3s ease;
 }
 
 .text-input:focus {
-  border: 2px solid #37b8f4;
   background-color: transparent;
   opacity: 1;
   outline: none;
@@ -107,12 +59,7 @@
 }
 
 .text-input::placeholder {
-  color: #888;
   font-style: italic;
-}
-
-.dark .text-input {
-  color: #f9f9f9;
 }
 
 /* Number Input */
@@ -122,30 +69,13 @@
   border-radius: 8px;
   font-size: 16px;
   width: 100px;
-  font-family: 'Arial', sans-serif;
-  background-color: transparent;
   opacity: 0.7;
   transition: all 0.3s ease, transform 0.3s ease;
   text-align: center;
 }
 
 .number-input:focus {
-  border: 2px solid #37b8f4;
   background-color: transparent;
   opacity: 1;
   outline: none;
-}
-
-/* Label */
-.label-form-event {
-  font-size: 18px;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  display: block;
-  margin-bottom: 8px;
-  transition: color 0.3s ease;
-}
-
-.dark .label-form-event {
-  color: #f9f9f9;
 }
