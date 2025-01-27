@@ -8,7 +8,7 @@ function SideBar({ pages, showSidebar, setShowSidebar }) {
     const size = useContext(ResponsiveContext);
 
     const routeButtons = pages.map((page) => (
-        <RoutedButton
+        page.displayInSidebar && <RoutedButton
             key={page.label}
             path={page.path}
             label={page.label}

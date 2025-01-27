@@ -24,19 +24,22 @@ const pages = [
     label: "Home",
     Icon: HomeRounded,
     path: "/",
-    Element: Home
+    Element: Home,
+    displayInSidebar: true
   },
   {
     label: "Events",
     Icon: Calendar,
     path: "/events",
-    Element: Events
+    Element: Events,
+    displayInSidebar: true
   },
   {
     label: "User Settings",
     Icon: UserSettings,
     path: "/usersettings",
-    Element: UserSettings
+    Element: UserSettings,
+    displayInSidebar: false
   }
 ];
 
@@ -69,7 +72,7 @@ function App() {
             setDark={setDark} />
           <Box direction="row-responsive" flex fill>
             <SideBar pages={pages} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-            <Page>
+            <Page fill>
               <Routes>
                 {pages.map(({ path, Element }) => (
                   <Route key={path} path={path} element={<Element />} />
