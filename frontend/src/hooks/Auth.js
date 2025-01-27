@@ -24,24 +24,6 @@ function AuthProvider({ children }) {
     const login = (token) => dispatch({ type: "LOGIN", token });
     const logout = () => dispatch({ type: "LOGOUT" });
 
-    const options = useMemo(() => {}, []);
-    const [ isLoading, data, error ] = useQuery("/auth/verify", options);
-    useEffect(() => {
-        if (isLoading)
-            return;
-
-        if (error) {
-            logout();
-            return;
-        }
-
-        if (data && data.isAuthenticated)
-            login(data.token);
-        else
-            logout();
-
-    }, [isLoading, data, error]);
-
     return (
         <AuthContext.Provider value={[ state, login, logout ]}>
             {children}
