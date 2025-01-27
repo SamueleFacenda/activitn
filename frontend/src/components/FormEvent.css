@@ -1,0 +1,81 @@
+/* Description Textarea */
+.description-textarea {
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+  height: 150px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.description-textarea:focus {
+  outline: none;
+  opacity: 1;
+  transform: translateY(10px);
+}
+
+.description-textarea::placeholder {
+  font-style: italic;
+}
+
+/* Date Input */
+.date-input {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.date-input:focus {
+  opacity: 1;
+  outline: none;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  background-color: lime;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.date-input::-webkit-input-placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+/* Text Input (e.g. for names, email) */
+.text-input {
+  opacity: 0.7;
+  transition: all 0.3s ease, transform 0.3s ease;
+}
+
+.text-input:focus {
+  background-color: transparent;
+  opacity: 1;
+  outline: none;
+  transform: translateY(10px);
+}
+
+.text-input::placeholder {
+  font-style: italic;
+}
+
+/* Number Input */
+.number-input {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100px;
+  opacity: 0.7;
+  transition: all 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+
+.number-input:focus {
+  background-color: transparent;
+  opacity: 1;
+  outline: none;
+}

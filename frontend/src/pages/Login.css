@@ -1,0 +1,87 @@
+/*
+https://graphicdesign.stackexchange.com/questions/48782/recreate-a-3d-rotating-prism-effect-in-a-web-browser
+https://jsfiddle.net/jh15caof/1/
+*/
+
+
+.prism {
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: 500px;
+  transform-style: preserve-3d; /* keep the 3d effect for the children components */
+  transform: rotateX(0deg); /* Initial rotation */
+  transition: transform 0.5s ease-in-out; /* type of the animation */
+}
+
+.face {
+  padding: 20px;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border: 2px solid rgb(47, 113, 255);
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  backface-visibility: hidden; /* Hide the back of the face */
+  background-color: transparent;
+  opacity: 0.9;
+  border-radius: 20px;
+}
+
+.dark .face {
+  border-color: #3efb6d;
+}
+
+.login {
+  transform: rotateX(0deg) translateZ(75px); /* Front */
+}
+
+.registration {
+  transform: rotateX(90deg) translateZ(75px); /* Up */
+}
+
+.forgot-password {
+  transform: rotateX(-90deg) translateZ(75px); /* Back */
+}
+
+/*button that simulate a link*/
+.link-button {
+  border: none; 
+  background-color: transparent; 
+  color: rgb(101, 195, 253); 
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 2; 
+  font: inherit; 
+  transition: all 0.3s ease, transform 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.link-button:focus {
+  outline: none; 
+}
+
+.link-button:hover {
+  transform: scale(1.1);
+}
+
+/*submit button*/
+.submit-login-button {
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: rgb(188, 188, 255);
+  font-size: 20px;
+  
+}
+
+.submit-login-button:hover {
+  background-color: rgb(101, 195, 253);
+  transform: scale(1.2);
+  opacity: 1;
+}
