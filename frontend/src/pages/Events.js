@@ -7,7 +7,7 @@ import {
 import FormEvent from '../components/FormEvent';
 
 const Events = () => (
-    <PageContent>       
+    <PageContent flex="grow">       
         <PageHeader title="Events"/>
         <FormEvent/>
     </PageContent>

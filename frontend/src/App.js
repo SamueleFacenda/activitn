@@ -1,17 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { 
   Box,
   Grommet, 
-  grommet as grommetTheme,
   Page,
 } from 'grommet';
-import { deepMerge } from "grommet/utils";
 
 import { Home, Events, UserSettings, Login } from './pages';
 import { AppBar, SideBar } from './components';
 import { AuthProvider } from "./hooks/Auth";
+import { theme } from './style';
 
 import {
   Grommet as GrommetIcon,
@@ -45,23 +44,10 @@ const pages = [
     label: "Login",
     Icon: UserSettings, // TODO: Change this icon
     path: "/login",
-    Element: Login
+    Element: Login,
     displayInSidebar: true
   }
 ];
-
-const theme = deepMerge(grommetTheme, {
-  global: {
-    colors: {
-      brand: '#228BE6',
-    },
-    font: {
-      family: "Roboto",
-      size: "18px",
-      height: "20px",
-    },
-  },
-});
 
 function App() {
   const [dark, setDark] = useState(false);
@@ -71,21 +57,23 @@ function App() {
     <Router>
       <AuthProvider>
         <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
-          <AppBar 
-            toggleSideBar={() => setShowSidebar(!showSidebar)} 
-            appName="Activitn" 
-            appIcon={<GrommetIcon/>} 
-            dark={dark} 
-            setDark={setDark} />
-          <Box direction="row-responsive" flex fill>
-            <SideBar pages={pages} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-            <Page fill>
-              <Routes>
-                {pages.map(({ path, Element }) => (
-                  <Route key={path} path={path} element={<Element />} />
-                ))}
-              </Routes>
-            </Page>
+          <Box fill>
+            <AppBar 
+              toggleSideBar={() => setShowSidebar(!showSidebar)} 
+              appName="Activitn" 
+              appIcon={<GrommetIcon/>} 
+              dark={dark} 
+              setDark={setDark} />
+            <Box direction="row-responsive" fill>
+              <SideBar pages={pages} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+              <Page overflow="auto">
+                <Routes>
+                  {pages.map(({ path, Element }) => (
+                    <Route key={path} path={path} element={<Element />} />
+                  ))}
+                </Routes>
+              </Page>
+            </Box>
           </Box>
         </Grommet>
       </AuthProvider>

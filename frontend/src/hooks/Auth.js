@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useReducer, useMemo } from "react";
-import { useQuery } from "./Api";
 
 const AuthContext = createContext();
 

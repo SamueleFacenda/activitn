@@ -25,10 +25,9 @@ function AppBar({ appIcon, appName, toggleSideBar, dark, setDark }) {
                 </Box>
             </Button>
             <Button
-            a11yTitle={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            icon={dark ? <Moon /> : <Sun />}
-            onClick={() => setDark(!dark)}
-            />
+                a11yTitle={dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                icon={dark ? <Moon /> : <Sun />}
+                onClick={() => setDark(!dark)} />
         </Header>
     );
 };

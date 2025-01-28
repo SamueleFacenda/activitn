@@ -41,7 +41,7 @@ function SideBar({ pages, showSidebar, setShowSidebar }) {
                 align="center"
                 fill="vertical"
                 justify="center"
-                elevation="small"
+                elevation="medium"
                 pad="none"
             >
                 {routeButtons}
