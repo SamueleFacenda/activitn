@@ -1,133 +1,120 @@
 import React, { useState } from "react";
-import "./Login.css";
 
-import { PageContent, PageHeader } from "grommet";
+import { 
+  Anchor, 
+  Box, 
+  Button, 
+  Form, 
+  FormField, 
+  Heading, 
+  PageContent, 
+  PageHeader, 
+  TextInput 
+} from "grommet";
 
-import LoginComponentTextBar from "../components/LoginInputTextBar";
-import SubmitBtn from "../components/SubmitBtn";
+/*
+https://graphicdesign.stackexchange.com/questions/48782/recreate-a-3d-rotating-prism-effect-in-a-web-browser
+https://jsfiddle.net/jh15caof/1/
+*/
+
+function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showUsername = true, buttonText }) {
+  const [value, setValue] = useState({})
+
+  return (
+    <Form
+      value={value}
+      onChange={nextValue => setValue(nextValue)}
+      onReset={() => setValue({})}
+      onSubmit={onSubmit}
+      >
+      {showUsername && <FormField label="Username" htmlFor={`${id}-name`}>
+        <TextInput
+          id={`${id}-name`}
+          name="name"
+          placeholder="Enter your username"
+        />
+      </FormField>}
+      {showEmail && <FormField label="Email" htmlFor={`${id}-email`}>
+        <TextInput
+          id={`${id}-email`}
+          name="email"
+          placeholder="Enter your email"
+        />
+      </FormField>}
+      {showPassword && <FormField label="Password" htmlFor={`${id}-password`}>
+        <TextInput
+          id={`${id}-password`}
+          name="password"
+          placeholder="Enter your password"
+          type="password"
+        />
+      </FormField>}
+      <Button type="submit" primary label={buttonText} />
+    </Form>
+  );
+}
+
+const Face = ({ children, initialRotation, title}) => (
+  <Box
+    style={{
+      position: "absolute",
+      transform: `rotateX(${initialRotation}deg) translateZ(75px)`,
+      backfaceVisibility: "hidden",
+    }} 
+    pad={{ horizontal: "large", vertical: "medium" }}
+    border={{ size: "xsmall" }}
+    round="large"
+    elevation="medium"
+    fill>
+
+    <Heading level="2">{title}</Heading>
+    {children}
+  </Box>
+)
 
 /*
  * @returns Component - Return a login page with a prism that rotates to show login, registration, and forgot password
  */
 
 function Login() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  // TODO: pass it as props from the parent component
-
-  /* functions that return jsx code */
-  const UsernamePasswordBlock = () => {
-    // return the username and password input bars
-    // TODO: Add a Google login button maybe
-    return (
-      <>
-        <LoginComponentTextBar
-          typeInput="text"
-          setText={setUserName}
-          value={userName}
-          placeHolder="Username"
-        />
-        <LoginComponentTextBar
-          typeInput="password"
-          setText={setPassword}
-          value={password}
-          placeHolder="Password"
-        />
-      </>
-    );
-  };
-
-  const EmailInputBar = () => {
-    // return the email input bar
-    return (
-      <LoginComponentTextBar
-        typeInput="email"
-        value={email}
-        setText={setEmail}
-        placeHolder="Email"
-      />
-    );
-  };
-
-  /* functions for animations */
-  const resetInput = () => {
-    // method to reset these states (useful when the prism rotates, the input fields should be empty --> start again)
-    setUserName("");
-    setPassword("");
-    setEmail("");
-  };
-
-  const rotate = (newOrientation) => {
-    // TODO: need to rest
-    // method to rotate the prism
-    const rotation = newOrientation === 0 ? 0 : newOrientation === 1 ? -90 : 90;
-    const prism = document.querySelector(".prism");
-    prism.style.transform = `rotateX(${rotation}deg)`; // rotate the prism
-  };
-
-  /* functions for form submission --> invoke backend function */
-
-  const handleLoginSubmit = (event) => {
-    event.preventDefault(); // Prevent the default behavior of the form
-    console.log("Login:", { userName, password });
-    // TODO: Send the data to the server
-  };
-
-  const handleRegistrationSubmit = (event) => {
-    event.preventDefault(); // Prevent the default behavior of the form
-    console.log("Registration:", { userName, password, email });
-    // TODO: Send the data to the server
-  };
-
-  const handleForgotPasswordSubmit = (event) => {
-    event.preventDefault(); // Prevent the default behavior of the form
-    console.log("EMAIL FORGOT:", { email });
-    // TODO: Send the data to the server
-    // check if the email exists in the database
-  };
+  const [rotation, setRotation] = useState(0);
 
   return (
-    <PageContent>
+    <PageContent align="center" fill>
       <PageHeader title="Login" />
-      <div className="prism">
-        <div className="face login">
-          <h1>Login</h1>
-          <form onSubmit={handleLoginSubmit}>
-            {UsernamePasswordBlock()}
-            <SubmitBtn text="Login" />
-          </form>
-          <button className="link-button" onClick={() => rotate(1)}>
+      <Box
+        className="prism"
+        style={{ 
+          transform: `rotateX(${rotation}deg)`,
+          transformStyle: "preserve-3d", /* keep the 3d effect for the children components */
+          transition: "transform 0.5s ease-in-out",
+        }}
+        width="medium" height="500px">
+        
+        <Face initialRotation={0} title="Log in">
+          <LoginBlock onSubmit={console.log} id="login" showEmail={false} buttonText="Log in" />
+          <Anchor onClick={() => setRotation(-90)} margin="small">
             Don't have account. SignUp
-          </button>
-          <button className="link-button" onClick={() => rotate(-1)}>
+          </Anchor>
+          <Anchor onClick={() => setRotation(90)} margin="small">
             Forgot Password?
-          </button>
-        </div>
+          </Anchor>
+        </Face>
 
-        <div className="face registration">
-          <h1>Registration</h1>
-          <form onSubmit={handleRegistrationSubmit}>
-            {EmailInputBar()}
-            {UsernamePasswordBlock()}
-            <SubmitBtn text="Sign up" />
-          </form>
-          <button className="link-button" onClick={() => rotate(0)}>
+        <Face initialRotation={90} title="Registration">
+          <LoginBlock onSubmit={console.log} id="register" buttonText="Register" />
+          <Anchor onClick={() => setRotation(0)} margin="small">
             Already have an account. Login
-          </button>
-        </div>
+          </Anchor>
+        </Face>
 
-        <div className="face forgot-password">
-          <h1>Forgot Password</h1>
-          <form onSubmit={handleForgotPasswordSubmit}>
-            {EmailInputBar()}
-            <SubmitBtn text="Send" />
-          </form>
-          <button className="link-button" onClick={() => rotate(0)}>
+        <Face initialRotation={-90} title="Forgot Password">
+          <LoginBlock onSubmit={console.log} id="password" showPassword={false} showUsername={false} buttonText="Send" />
+          <Anchor onClick={() => setRotation(0)} margin="small">
             Return Login
-          </button>
-        </div>
-      </div>
+          </Anchor>
+        </Face>
+      </Box>
     </PageContent>
   );
 }

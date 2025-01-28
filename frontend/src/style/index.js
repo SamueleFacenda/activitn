@@ -36,6 +36,12 @@ const theme = deepMerge(grommetTheme, {
     },
     textInput: inputTheme,
     textArea: inputTheme,
+    anchor: {
+        extend: `transition: all 0.3s ease, transform 0.3s ease;`,
+        hover: {
+            extend: `transform: scale(1.05);`,
+        },
+    }
 });
 
 export { theme };
