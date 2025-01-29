@@ -12,10 +12,12 @@ import {
   TextInput 
 } from "grommet";
 
-/*
-https://graphicdesign.stackexchange.com/questions/48782/recreate-a-3d-rotating-prism-effect-in-a-web-browser
-https://jsfiddle.net/jh15caof/1/
-*/
+import {
+  usePostAuthLogin,
+  usePostAuthRegister
+} from "../api/queries";
+
+import { useAuth } from "../hooks/Auth";
 
 function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showUsername = true, buttonText }) {
   const [value, setValue] = useState({})
@@ -25,7 +27,7 @@ function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showU
       value={value}
       onChange={nextValue => setValue(nextValue)}
       onReset={() => setValue({})}
-      onSubmit={onSubmit}
+      onSubmit={({ value }) => onSubmit(value)}
       >
       {showUsername && <FormField label="Username" htmlFor={`${id}-name`}>
         <TextInput
@@ -78,6 +80,27 @@ const Face = ({ children, initialRotation, title}) => (
 
 function Login() {
   const [rotation, setRotation] = useState(0);
+  const { login } = useAuth();
+
+  const { mutate: registerMutate  } = usePostAuthRegister(undefined, {
+    onSuccess: () => {
+      console.log("Success");
+    }
+  });
+
+  const { mutate: loginMutate } = usePostAuthLogin(undefined, {
+    onSuccess: (data, variables, context) => {
+      login(data.data.token)
+    }
+  });
+
+  const onSubmitRegister = (data) => {
+    registerMutate({body: data});
+  };
+
+  const onSubmitLogin = (data) => {
+    loginMutate({body: data});
+  };
 
   return (
     <PageContent align="center" fill>
@@ -92,7 +115,7 @@ function Login() {
         width="medium" height="500px">
         
         <Face initialRotation={0} title="Log in">
-          <LoginBlock onSubmit={console.log} id="login" showEmail={false} buttonText="Log in" />
+          <LoginBlock onSubmit={onSubmitLogin} id="login" showUsername={false} buttonText="Log in" />
           <Anchor onClick={() => setRotation(-90)} margin="small">
             Don't have account. SignUp
           </Anchor>
@@ -102,7 +125,7 @@ function Login() {
         </Face>
 
         <Face initialRotation={90} title="Registration">
-          <LoginBlock onSubmit={console.log} id="register" buttonText="Register" />
+          <LoginBlock onSubmit={onSubmitRegister} id="register" buttonText="Register" />
           <Anchor onClick={() => setRotation(0)} margin="small">
             Already have an account. Login
           </Anchor>

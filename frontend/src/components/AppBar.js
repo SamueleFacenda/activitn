@@ -9,8 +9,8 @@ import { useAuth } from '../hooks/Auth';
 import { Moon, Sun } from "grommet-icons";
 
 function AppBar({ appIcon, appName, toggleSideBar, dark, setDark }) {
-    const [authState, , logout] = useAuth();
-    const { isAuthenticated } = authState;
+    const { state, logout } = useAuth();
+    const { isAuthenticated } = state;
 
     return (
         <Header background="brand" pad="small" justify="between" direction="row" align="center">

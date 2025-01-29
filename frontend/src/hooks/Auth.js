@@ -1,12 +1,19 @@
-import React, { createContext, useContext, useEffect, useReducer, useMemo } from "react";
-
+import React, { createContext, useContext, useReducer } from "react";
+import { client } from "../api/requests/services.gen";
 const AuthContext = createContext();
 
 const authReducer = (state, action) => {
+    const interceptor = (request) => {
+        request.headers.set('x-access-token', action.token);
+        return request;
+    }
+    console.log(action)
     switch (action.type) {
         case "LOGIN":
-            return { ...state, isLoading: false, isAuthenticated: true, token: action.token };
+            client.interceptors.request.use(interceptor);
+            return { ...state, isLoading: false, isAuthenticated: true, token: action.token, _interceptor: interceptor};
         case "LOGOUT":
+            client.interceptors.request.eject(state._interceptor);
             return { ...state, isLoading: false, isAuthenticated: false, token: null };
         default:
             return state;
@@ -24,7 +31,7 @@ function AuthProvider({ children }) {
     const logout = () => dispatch({ type: "LOGOUT" });
 
     return (
-        <AuthContext.Provider value={[ state, login, logout ]}>
+        <AuthContext.Provider value={{ state, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

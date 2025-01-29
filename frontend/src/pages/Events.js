@@ -4,12 +4,13 @@ import {
   } from 'grommet';
 
 
-import FormEvent from '../components/FormEvent';
+import { EventsList, FormEvent } from '../components';
 
 const Events = () => (
     <PageContent flex="grow">       
         <PageHeader title="Events"/>
         <FormEvent/>
+        <EventsList/>
     </PageContent>
 )
 

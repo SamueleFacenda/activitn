@@ -3,10 +3,29 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { client } from "./api/requests/services.gen";
+
+client.setConfig({
+  baseUrl: "http://localhost:8000/api/v1",
+});
+
+client.interceptors.request.use((config) => {
+  return config;
+});
+
+client.interceptors.response.use((response) => {
+  return response;
+});
+
+export const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

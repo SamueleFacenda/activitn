@@ -1,9 +1,20 @@
 import React, { useState } from "react";
 import { Button, Box, Form, FormField, Heading, TextArea, TextInput } from "grommet";
+import { useAuth } from "../hooks/Auth";
+import { usePostEvents } from "../api/queries";
+import { useQueryClient } from "@tanstack/react-query"
+import { UseGetEventsKeyFn } from "../api/queries";
 
-
-export default function FormEvent() {
+export function FormEvent() {
   const [value, setValue] = useState({});
+
+  const { state: authState } = useAuth();
+  const queryClient = useQueryClient();
+  const { mutate: createEvent } = usePostEvents(undefined, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: UseGetEventsKeyFn() });
+    }
+  });
 
   return (
     <Box
@@ -20,7 +31,7 @@ export default function FormEvent() {
         value={value}
         onChange={nextValue => setValue(nextValue)}
         onReset={() => setValue({})}
-        onSubmit={({ value }) => {console.log(value)}}>
+        onSubmit={({ value }) => createEvent({ body: value })}>
 
         <FormField label="Event Name" htmlFor="name">
           <TextInput
@@ -32,7 +43,7 @@ export default function FormEvent() {
 
         <FormField label="Description" htmlFor="desc">
           <TextArea
-            id="desc" name="desc"
+            id="desc" name="description"
             placeholder="Enter event description"
             required
             resize="vertical"
@@ -48,7 +59,7 @@ export default function FormEvent() {
 
         <FormField label="Location" htmlFor="loc">
           <TextInput
-            id="loc" name="loc"
+            id="loc" name="location"
             placeholder="Enter event location"
             required
           />
@@ -56,7 +67,7 @@ export default function FormEvent() {
 
         <FormField label="Group Size" htmlFor="size">
           <TextInput
-            id="size" name="size"
+            id="size" name="group" // TODO add size to backend
             type="number"
             required
             min="2" // group size should be at least 1 --> doesn't make sense to have a group of 1
