@@ -17,6 +17,12 @@ import {
   usePostAuthRegister
 } from "../api/queries";
 
+import {
+  Mail,
+  Lock,
+  User
+} from "grommet-icons";
+
 import { useAuth } from "../hooks/Auth";
 
 function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showUsername = true, buttonText }) {
@@ -34,6 +40,8 @@ function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showU
           id={`${id}-name`}
           name="name"
           placeholder="Enter your username"
+          icon={<User />}
+          reverse={true}
         />
       </FormField>}
       {showEmail && <FormField label="Email" htmlFor={`${id}-email`}>
@@ -41,6 +49,8 @@ function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showU
           id={`${id}-email`}
           name="email"
           placeholder="Enter your email"
+          icon={<Mail />}
+          reverse={true}
         />
       </FormField>}
       {showPassword && <FormField label="Password" htmlFor={`${id}-password`}>
@@ -49,6 +59,8 @@ function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showU
           name="password"
           placeholder="Enter your password"
           type="password"
+          icon={<Lock />}
+          reverse={true}
         />
       </FormField>}
       <Button type="submit" primary label={buttonText} />
@@ -63,6 +75,7 @@ const Face = ({ children, initialRotation, title}) => (
       transform: `rotateX(${initialRotation}deg) translateZ(75px)`,
       backfaceVisibility: "hidden",
     }} 
+    background="background-contrast"
     pad={{ horizontal: "large", vertical: "medium" }}
     border={{ size: "xsmall" }}
     round="large"

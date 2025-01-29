@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import { Button, Box, Form, FormField, Heading, TextArea, TextInput } from "grommet";
+import {
+  Button,
+  Box,
+  Form,
+  FormField,
+  Heading,
+  TextArea,
+  TextInput,
+} from "grommet";
 import { useAuth } from "../hooks/Auth";
 import { usePostEvents } from "../api/queries";
-import { useQueryClient } from "@tanstack/react-query"
+import { useQueryClient } from "@tanstack/react-query";
 import { UseGetEventsKeyFn } from "../api/queries";
+
+import styled from "styled-components";
 
 export function FormEvent() {
   const [value, setValue] = useState({});
@@ -13,7 +23,7 @@ export function FormEvent() {
   const { mutate: createEvent } = usePostEvents(undefined, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: UseGetEventsKeyFn() });
-    }
+    },
   });
 
   return (
@@ -25,17 +35,19 @@ export function FormEvent() {
       round="large"
       elevation="large"
       flex="grow"
+      background="background-contrast"
     >
       <Heading level="2">Create Event</Heading>
       <Form
         value={value}
-        onChange={nextValue => setValue(nextValue)}
+        onChange={(nextValue) => setValue(nextValue)}
         onReset={() => setValue({})}
-        onSubmit={({ value }) => createEvent({ body: value })}>
-
+        onSubmit={({ value }) => createEvent({ body: value })}
+      >
         <FormField label="Event Name" htmlFor="name">
           <TextInput
-            id="name" name="name"
+            id="name"
+            name="name"
             placeholder="Enter event name"
             required
           />
@@ -43,23 +55,21 @@ export function FormEvent() {
 
         <FormField label="Description" htmlFor="desc">
           <TextArea
-            id="desc" name="description"
+            id="desc"
+            name="description"
             placeholder="Enter event description"
             required
             resize="vertical"
           />
         </FormField>
         <FormField label="Date" htmlFor="date">
-          <TextInput
-            id="date" name="date"
-            type="datetime-local"
-            required
-          />
-        </FormField>  
+          <TextInput id="date" name="date" type="datetime-local" required />
+        </FormField>
 
         <FormField label="Location" htmlFor="loc">
           <TextInput
-            id="loc" name="location"
+            id="loc"
+            name="location"
             placeholder="Enter event location"
             required
           />
@@ -67,14 +77,21 @@ export function FormEvent() {
 
         <FormField label="Group Size" htmlFor="size">
           <TextInput
-            id="size" name="group" // TODO add size to backend
+            id="size"
+            name="group" // TODO add size to backend
             type="number"
             required
             min="2" // group size should be at least 1 --> doesn't make sense to have a group of 1
+            placeholder="Enter group size (at least 2)"
           />
         </FormField>
 
-        <Button margin={{ vertical: "medium" }} type="submit" primary label="Create Event" />
+        <Button
+          margin={{ vertical: "medium" }}
+          type="submit"
+          primary
+          label="Create Event"
+        />
       </Form>
     </Box>
   );
