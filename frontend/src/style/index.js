@@ -16,16 +16,16 @@ const inputTheme = {
           font-style: italic;
         `,
   },
-};	
+};
 
 const theme = deepMerge(grommetTheme, {
   global: {
     colors: {
       brand: "#228BE6",
-			"background-contrast": {
-				dark: "#2D3748",
-				light: "#F7FAFC"
-			},
+      "background-contrast": {
+        dark: "#2D3748",
+        light: "#F7FAFC",
+      },
     },
     font: {
       family: "Roboto",
@@ -42,28 +42,28 @@ const theme = deepMerge(grommetTheme, {
   button: {
     primary: {
       color: {
-				dark: "#22D3EE",
-				light: "#00e676"
-			},
+        dark: "#22D3EE",
+        light: "#00e676",
+      },
     },
     border: {
       color: {
-				dark: "#FFFFFF",
-				light: "#CBD5E1",
-			},
+        dark: "#FFFFFF",
+        light: "#CBD5E1",
+      },
     },
     hover: {
-      background: { 
-				color: { 
-					dark: "#2DD4BF",
-					light: "#1D4ED8"
-				}, 
-		 	},
+      background: {
+        color: {
+          dark: "#2DD4BF",
+          light: "#1D4ED8",
+        },
+      },
       border: {
         color: {
-					dark: "#FFFFFF",
-					light: "#1D4ED8",
-				},
+          dark: "#FFFFFF",
+          light: "#1D4ED8",
+        },
       },
     },
   },
