@@ -1,7 +1,10 @@
 import Event from '../models/event.js';
+import User from '../models/user.js';
 
 const createEvent = async (req, res) => {
-    const event = new Event(req.body);
+    const userEmail = req.loggedUser.email;
+    const user = await User.findOne({ email: userEmail });
+    const event = new Event({ organizer: user._id, ...req.body });
     try {
         await event.save();
         res.status(201).json(event);

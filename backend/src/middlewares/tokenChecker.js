@@ -5,6 +5,10 @@ dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY;
 
 export default (req, res, next) => {
+    // Allow OPTIONS requests without authentication
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);  // Respond OK for preflight
+    }
 
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (!token) return res.status(401).json({success:false,message:'No token provided.'});
