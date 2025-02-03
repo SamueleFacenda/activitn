@@ -34,21 +34,51 @@ export const getEvents = (options) => {
  */
 export const getEventsById = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).get(Object.assign(Object.assign({}, options), { url: '/events/{id}' }));
+    // get the id from the options object
+    const eventId = options && options.id;
+    
+    if (!eventId) {
+        throw new Error("ID of the event to see is not supplied");
+    }
+
+    const url = `/events/${eventId}`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .get(Object.assign(Object.assign({}, options), { url }));
 };
 /**
  * Delete an event by ID
  */
 export const deleteEventsById = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).delete(Object.assign(Object.assign({}, options), { url: '/events/{id}' }));
+    // get the id from the options object
+    const eventId = options && options.id;
+    
+    if (!eventId) {
+        throw new Error("ID of the event to delete is not supplied");
+    }
+
+    const url = `/events/${eventId}`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .delete(Object.assign(Object.assign({}, options), { url }));
 };
+
 /**
  * Update an event by ID
  */
 export const patchEventsById = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).patch(Object.assign(Object.assign({}, options), { url: '/events/{id}' }));
+    // get the id from the options object
+    const eventId = options && options.id;
+
+    if (!eventId) {
+        throw new Error("ID of the event to update is not supplied");
+    }
+    const url = `/events/${eventId}`;
+    
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .patch(Object.assign(Object.assign({}, options), { url }));
 };
 /**
  * Add a user to an event
@@ -56,7 +86,19 @@ export const patchEventsById = (options) => {
  */
 export const postEventsByEventIdByUserId = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).post(Object.assign(Object.assign({}, options), { url: '/events/{eventId}/{userId}' }));
+
+    // get the id from the options object
+    const eventId = options && options.eventId;
+    const userId = options && options.userId;
+
+    if (!eventId || !userId) {
+        throw new Error("ID of the event and user to add is not supplied");
+    }
+
+    const url = `/events/${eventId}/${userId}`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .post(Object.assign(Object.assign({}, options), { url }));
 };
 /**
  * Remove a user from an event
@@ -64,7 +106,19 @@ export const postEventsByEventIdByUserId = (options) => {
  */
 export const deleteEventsByEventIdByUserId = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).delete(Object.assign(Object.assign({}, options), { url: '/events/{eventId}/{userId}' }));
+
+    // get the id from the options object
+    const eventId = options && options.eventId;
+    const userId = options && options.userId;
+
+    if (!eventId || !userId) {
+        throw new Error("ID of the event and user to remove is not supplied");
+    }
+
+    const url = `/events/${eventId}/${userId}`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .delete(Object.assign(Object.assign({}, options), { url }));
 };
 /**
  * Get all users
@@ -78,7 +132,18 @@ export const getUsers = (options) => {
  */
 export const getUsersById = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).get(Object.assign(Object.assign({}, options), { url: '/users/{id}' }));
+
+    // get the id from the options object
+    const userId = options && options.id;
+
+    if (!userId) {
+        throw new Error("ID of the user is not supplied");
+    }
+
+    const url = `/users/${userId}`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .get(Object.assign(Object.assign({}, options), { url }));   
 };
 /**
  * Delete a user by ID
@@ -99,7 +164,17 @@ export const patchUsersById = (options) => {
  */
 export const getUsersByIdEvents = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).get(Object.assign(Object.assign({}, options), { url: '/users/{id}/events' }));
+
+    // get the id from the options object
+    const userId = options && options.id;
+
+    if (!userId) {
+        throw new Error("ID of the user is not supplied");
+    }
+
+    const url = `/users/${userId}/events`;
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .get(Object.assign(Object.assign({}, options), { url }));
 };
 /**
  * Get all events where a user has participated
@@ -113,5 +188,16 @@ export const getUsersByIdParticipations = (options) => {
  */
 export const getUsersByIdSubscriptions = (options) => {
     var _a;
-    return ((_a = options === null || options === void 0 ? void 0 : options.client) !== null && _a !== void 0 ? _a : client).get(Object.assign(Object.assign({}, options), { url: '/users/{id}/subscriptions' }));
+
+    // get the id from the options object
+    const userId = options && options.id;
+
+    if (!userId) {
+        throw new Error("ID of the user is not supplied");
+    }
+
+    const url = `/users/${userId}/subscriptions`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .get(Object.assign(Object.assign({}, options), { url }));
 };
