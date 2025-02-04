@@ -18,6 +18,17 @@ import { Mail, Lock, User } from "grommet-icons";
 
 import { useAuth } from "../hooks/Auth";
 
+/**
+ * LoginBlock component that represents the login form block
+ * @param {props} param0 - id, onSubmit, showEmail, showPassword, showUsername, buttonText
+ * @param {string} id - id of the form
+ * @param {function} onSubmit - function to call when the form is submitted
+ * @param {boolean} showEmail - show the email field
+ * @param {boolean} showPassword - show the password field
+ * @param {boolean} showUsername - show the username field
+ * @param {string} buttonText - text of the submit button
+ * @returns {JSX.Element} - LoginBlock component
+ */
 function LoginBlock({
   id,
   onSubmit,
@@ -74,6 +85,14 @@ function LoginBlock({
   );
 }
 
+/**
+ * Face component that represents a face of the prism
+ * @param {props} param0 - children, initialRotation, title
+ * @param {JSX.Element} children - children of the face
+ * @param {number} initialRotation - initial rotation of the face
+ * @param {string} title - title of the face
+ * @returns {JSX.Element} - Face component
+ */
 const Face = ({ children, initialRotation, title }) => (
   <Box
     style={{
@@ -101,18 +120,27 @@ function Login() {
   const [rotation, setRotation] = useState(0);
   const { login } = useAuth();
 
-  console.log("Login " + login);
+  // console.log("Login " + login);
   const { mutate: registerMutate } = usePostAuthRegister(undefined, {
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data) => {
       login(data.data.token, data.data.id);
       console.log("Success");
+      alert("Registration success");
+    },
+    onError: (error) => {
+      console.log("Login error:", error);
+      alert("Registrazione non riuscita");
     },
   });
 
   const { mutate: loginMutate } = usePostAuthLogin(undefined, {
-    onSuccess: (data, variables, context) => {
-      console.log("Login success:", data);
+    onSuccess: (data) => {
       login(data.data.token, data.data.id);
+      alert("Login success");
+    },
+    onError: (error) => {
+      console.log("Login error:", error);
+      alert("Credenziali non valide");
     },
   });
 
