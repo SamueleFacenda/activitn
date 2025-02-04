@@ -68,7 +68,7 @@ export function FormEvent({ event }) {
       <h2>Not logged in</h2>
     )
   }
-  
+
   const getBody = () => {
     return {
       "name": name,
@@ -82,6 +82,11 @@ export function FormEvent({ event }) {
 
   const handleSubmit = () => {
     const value = getBody();
+    // tag should be selected
+    if (!tag) {
+      alert("Please select a tag");
+      return;
+    }
     if (isCreate) {
       createEvent({ body: value });
     } else {
