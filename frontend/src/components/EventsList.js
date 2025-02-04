@@ -1,13 +1,69 @@
-import React, { useState } from "react";
-import { useGetEvents } from "../api/queries";
+import { useGetEvents, usePostEventsByEventIdByUserId } from "../api/queries";
 import { useAuth } from "../hooks/Auth";
 
-import { EventGrid } from "./EventGrid";
-import { Box, InfiniteScroll, Grid, Pagination } from "grommet";
+import { Box, Button } from "grommet";
 
-export function EventsList() {
+import { UserAdd } from "grommet-icons";
+
+import { ViewButton } from "./ViewButton";
+
+import { useQueryClient } from "@tanstack/react-query";
+import { UseGetEventsKeyFn } from "../api/queries";
+
+import { EventGridPagination } from "./EventGridPagination";
+
+// FIX: BUG date is > today
+import { IsPendingSection, ShowErrorSection } from "../components";
+
+/**
+ * Function that filter the events by the idUser, tag (topic), startTime and endTime of the events
+ * @param {Array} events - array of events
+ * @param {string} idUser - id of the user
+ * @param {string} startTime - start time of the event (is always defined and >= now)
+ * @param {string} endTime - end time of the event (can be undefined)
+ * @param {string} tag - tag of the event (can be "" / undefined)
+ * @returns the filtered events
+ */
+function filterEvents(events, idUser, startTime, endTime, tag) {
+  const filteredEvents = [];
+  for (let i = 0; i < events.length; ++i) {
+    if (
+      events[i].organizer === idUser ||
+      events[i].attendees.includes(idUser)
+    ) {
+      // user is already in the event
+      // console.log("User is already in the event");
+      continue;
+    }
+
+    if (tag !== "" && events[i].tag !== tag) {
+      // tag exists and doesn't match
+      // console.log("Tag exists and doesn't match");
+      continue;
+    }
+
+    // console.log(startTime, events[i].date);
+    if (startTime > events[i].date) {
+      // console.log("Too early");
+      // too early
+      continue;
+    }
+    // console.log(endTime)
+    if (endTime !== "" && endTime < events[i].date) {
+      // too late
+      // console.log("Too late");
+      continue;
+    }
+
+    filteredEvents.push(events[i]); // good candidate
+  }
+
+  return filteredEvents;
+}
+
+export function EventsList({ tag, dateStart, dateEnd }) {
   const { state } = useAuth();
-  const { accessToken } = state;
+  const idUser = state.userId;
   const { isAuthenticated } = state;
 
   const { data, isPending, isError, error } = useGetEvents(
@@ -18,116 +74,49 @@ export function EventsList() {
     }
   );
 
-  // const events = isPending ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : data;
-  const events = [
-    {
-      id: "1",
-      name: "Scout",
-      description: "Scout teach you how to survive in the wild",
-      date: "2021-10-10T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20", // is 11/20 a valid value?
+  const queryClient = useQueryClient();
+  const { mutate: joinEvent } = usePostEventsByEventIdByUserId(undefined, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: UseGetEventsKeyFn() });
     },
-    {
-      id: "2",
-      name: "Hiking",
-      description: "Hiking in the mountains",
-      date: "2021-10-12T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "3",
-      name: "Climbing",
-      description: "Climbing the mountain",
-      date: "2021-10-14T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "4",
-      name: "Skiing",
-      description: "Skiing in the mountains",
-      date: "2021-10-16T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "5",
-      name: "Scout",
-      description: "Scout teach you how to survive in the wild",
-      date: "2021-10-10T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "6",
-      name: "Hiking",
-      description: "Hiking in the mountains",
-      date: "2021-10-12T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "7",
-      name: "Climbing",
-      description: "Climbing the mountain",
-      date: "2021-10-14T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "8",
-      name: "Skiing",
-      description: "Skiing in the mountains",
-      date: "2021-10-16T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "9",
-      name: "Scout",
-      description: "Scout teach you how to survive in the wild",
-      date: "2021-10-10T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-    {
-      id: "10",
-      name: "Scout",
-      description:
-        "Scout teach you how to survive in the wild... To be continue in the next episode, see you next time",
-      date: "2021-10-10T10:00:00.000Z",
-      location: "Trento",
-      group: "11/20",
-    },
-  ];
-  console.log(isPending, accessToken);
+  });
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // number of events per page
-
-  // get the events of the current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentEvents = events.slice(startIndex, endIndex);
-
-  const handlePageChange = (event) => {
-    setCurrentPage(event.page);
+  const handleJoinEvent = (event) => {
+    alert("Joining event: " + event.name);
+    joinEvent({ eventId: event._id, userId: idUser });
   };
 
-  return (
-    <>
-      <EventGrid events={currentEvents} />
+  const JoinButton = ({ event }) => {
+    return (
+      <Button
+        label="Join"
+        icon={<UserAdd />}
+        primary
+        onClick={() => {
+          handleJoinEvent(event);
+        }}
+      />
+    );
+  };
+
+  let events = isPending ? [] : data;
+
+  if (isPending || isError) {
+    return isError ? <ShowErrorSection error={error} /> : <IsPendingSection />;
+  }
+
+  events = filterEvents(events, idUser, dateStart, dateEnd, tag);
+
+  // console.log(events.length)
+  if (events.length === 0) {
+    return (
       <Box align="center">
-        <Pagination
-          margin={{ top: "large" }}
-          numberItems={events.length}
-          step={itemsPerPage}
-          onChange={handlePageChange}
-          page={currentPage}
-        />
+        <h2>Non ci sono eventi disponibili</h2>
       </Box>
-    </>
+    );
+  }
+
+  return (
+    <EventGridPagination events={events} buttons={[ViewButton, JoinButton]} />
   );
 }
