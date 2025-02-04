@@ -7,51 +7,6 @@ const Messages = {
   DELETE_EVENT: "Are you sure you want to delete this event?",
 };
 
-// const ButtonModal = ({ Btn, messageModal, event, methodApply }) => {
-//   const [open, setOpen] = useState(false);
-
-//   // Funzione per aprire il Layer (modal)
-//   const openModal = () => {
-//     console.log("Modal aperto!");
-//     setOpen(true);
-//   }
-
-//   // Funzione per chiudere il Layer
-//   const closeModal = () => setOpen(false);
-
-//   // Funzione per l'azione di conferma
-//   const handleConfirm = () => {
-//     // Azione di conferma
-//     console.log("Azione confermata!");
-//     methodApply(event);
-//     closeModal(); // Chiudi il modal dopo la conferma
-//   };
-
-//   return (
-//     <>
-//       <Button label="ok" width="min-content" onClick={openModal} />
-
-//       {open && (
-//         <Layer
-//           animate={true}
-//           animation="fadeIn"
-//           // animation="slideIn"
-//           onEsc={closeModal} // Chiudi il modal quando si preme Esc
-//           onClickOutside={closeModal} // Close the modal when clicking outside
-//         >
-//           <Box pad="medium" gap="small" width="min-content">
-//             <Text>{ messageModal }</Text>
-//             <Box direction="row" gap="small" justify="end">
-//               <Button label="Annulla" onClick={closeModal} />
-//               <Button label="Conferma" primary onClick={handleConfirm} />
-//             </Box>
-//           </Box>
-//         </Layer>
-//       )}
-//     </>
-//   );
-// };
-
 const ButtonModal = ({ typeAction, event, methodApply }) => {
   const [open, setOpen] = useState(false);
 
@@ -67,7 +22,7 @@ const ButtonModal = ({ typeAction, event, methodApply }) => {
   // function to handle the confirmation action --> invoke methodApply
   const handleConfirm = () => {
     methodApply(event);
-    closeModal(); // Chiudi il modal dopo la conferma
+    closeModal();
   };
 
   // message to show in the modal
@@ -81,21 +36,26 @@ const ButtonModal = ({ typeAction, event, methodApply }) => {
         icon={Icon}
         width="min-content"
         onClick={openModal}
-        color={color}
+        primary
+        style={{
+          backgroundColor: color,
+        }}
       />
     );
   };
 
+  // DeleteEvent Button template
   const DeleteEventButton = () => {
     return (
       <ConfirmButton
-        label="Delete Event"
+        // label="Delete Event"
         Icon={<Trash />}
-        color="status-critical"
+        color="#FF4040"        
       />
     );
   };
 
+  // function to get the button based on the typeAction
   const getButton = (typeAction) => {
     switch (typeAction) {
       case "DELETE_EVENT":
@@ -113,7 +73,7 @@ const ButtonModal = ({ typeAction, event, methodApply }) => {
           animate={true}
           animation="fadeIn"
           // animation="slideIn"
-          onEsc={closeModal} // Chiudi il modal quando si preme Esc
+          onEsc={closeModal} // Close the modal when pressing the Esc key
           onClickOutside={closeModal} // Close the modal when clicking outside
         >
           <Box pad="medium" gap="small" width="min-content">
