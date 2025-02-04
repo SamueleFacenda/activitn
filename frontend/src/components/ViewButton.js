@@ -12,8 +12,12 @@ const ViewButton = ({event}) => {
   return (
     <RoutedButton
       path={`${PATH}/${event._id}`}
-      label="View"
+      // label="View"
       icon={<View />}
+      primary
+      style={{
+        backgroundColor: "#4C84FF",
+     }}
     />
   );
 }

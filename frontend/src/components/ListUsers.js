@@ -29,7 +29,7 @@ function ListUsers({ listUser }) {
   //   11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   // ]
   // listUser = testUsers;
-  console.log("ListUsers: ", listUser);
+  // console.log("ListUsers: ", listUser);
   return (
     <Box height="small" overflow="auto">
       <Heading level="3" margin="none">

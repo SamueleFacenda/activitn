@@ -21,7 +21,7 @@ const ShowTutorial = ({ tutorial }) => {
       />
       {showTutorial && (
         <Box
-          animation="slideIn"
+          animation="fadeIn"
           style={{ transition: "transform 0.3s ease" }}
         >
           <Text>{tutorial}</Text>
