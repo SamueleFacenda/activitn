@@ -19,7 +19,6 @@ const truncateNameLength = (name) => {
  * @returns {Text} - The name of the user with the given ID
  */
 const NameUserID = ({ id }) => {
-  console.log("ID: ", id);
   const { state } = useAuth();
   const { isAuthenticated } = state;
   const { data, isPending, isError, error } = useGetUsersById(
@@ -29,9 +28,7 @@ const NameUserID = ({ id }) => {
       enabled: isAuthenticated,
     }
   );
-  console.log("Data: ", data);
-  console.log("IsPending: ", isPending);
-  console.log("isAuthenticated: ", isAuthenticated);
+  
   if (isPending) {
     return <Spinner />;
   }
@@ -41,7 +38,6 @@ const NameUserID = ({ id }) => {
   }
   
   const user = isPending ? [] : data;
-  console.log("User: ", user);
   return <Text>{truncateNameLength(user.name)}</Text>;
 };
 

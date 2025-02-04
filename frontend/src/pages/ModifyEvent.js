@@ -1,6 +1,6 @@
 import { FormEvent, IsPendingSection, ShowErrorSection } from "../components";
 
-import { PageHeader, Text, Spinner, PageContent } from "grommet";
+import { PageHeader, PageContent } from "grommet";
 
 import {
   useGetEventsById,
