@@ -37,7 +37,7 @@ const styleSideElement = {
 function SideBar({ pages, showSidebar, setShowSidebar }) {
   const { state } = useAuth();
   const { logout } = useAuth();
-  console.log("State: ", state);
+  // console.log("State: ", state);
   const userId = state.userId;
 
   const size = useContext(ResponsiveContext);
