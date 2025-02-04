@@ -26,6 +26,14 @@ const theme = deepMerge(grommetTheme, {
         dark: "#2D3748",
         light: "#F7FAFC",
       },
+      "raking-1": {
+        dark: "#CBD5E0",
+        light: "#A8E6A3",
+      },
+      "raking-2": {
+        dark: "#A0AEC0",
+        light: "#D0F2D6",
+      },
     },
     font: {
       family: "Roboto",
