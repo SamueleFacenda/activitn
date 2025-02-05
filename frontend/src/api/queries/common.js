@@ -31,3 +31,7 @@ export const useDeleteEventsByEventIdByUserIdKey = "DeleteEventsByEventIdByUserI
 export const UseDeleteEventsByEventIdByUserIdKeyFn = (mutationKey) => [useDeleteEventsByEventIdByUserIdKey, ...(mutationKey !== null && mutationKey !== void 0 ? mutationKey : [])];
 export const useDeleteUsersByIdKey = "DeleteUsersById";
 export const UseDeleteUsersByIdKeyFn = (mutationKey) => [useDeleteUsersByIdKey, ...(mutationKey !== null && mutationKey !== void 0 ? mutationKey : [])];
+export const UseGetMessagesByEventIdKey = "GetMessagesByEventId";
+export const UseGetMessagesByEventIdKeyFn = (clientOptions = {}, queryKey) => [UseGetMessagesByEventIdKey, ...(queryKey !== null && queryKey !== void 0 ? queryKey : [clientOptions])];
+export const UsePostMessagesByEventIdKey = "PostMessagesByEventId";
+export const UsePostMessagesByEventIdKeyFn = (mutationKey) => [UsePostMessagesByEventIdKey, ...(mutationKey !== null && mutationKey !== void 0 ? mutationKey : [])];

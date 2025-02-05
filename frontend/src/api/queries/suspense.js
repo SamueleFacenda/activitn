@@ -1,6 +1,6 @@
 // generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3 
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { getEvents, getEventsById, getUsers, getUsersById, getUsersByIdEvents, getUsersByIdParticipations, getUsersByIdSubscriptions } from "../requests/services.gen";
+import { getEvents, getEventsById, getUsers, getUsersById, getUsersByIdEvents, getUsersByIdParticipations, getUsersByIdSubscriptions, getMessagesByEventId } from "../requests/services.gen";
 import * as Common from "./common";
 export const useGetEventsSuspense = (clientOptions = {}, queryKey, options) => useSuspenseQuery(Object.assign({ queryKey: Common.UseGetEventsKeyFn(clientOptions, queryKey), queryFn: () => getEvents(Object.assign({}, clientOptions)).then(response => response.data) }, options));
 export const useGetEventsByIdSuspense = (clientOptions, queryKey, options) => useSuspenseQuery(Object.assign({ queryKey: Common.UseGetEventsByIdKeyFn(clientOptions, queryKey), queryFn: () => getEventsById(Object.assign({}, clientOptions)).then(response => response.data) }, options));
@@ -9,3 +9,4 @@ export const useGetUsersByIdSuspense = (clientOptions, queryKey, options) => use
 export const useGetUsersByIdEventsSuspense = (clientOptions, queryKey, options) => useSuspenseQuery(Object.assign({ queryKey: Common.UseGetUsersByIdEventsKeyFn(clientOptions, queryKey), queryFn: () => getUsersByIdEvents(Object.assign({}, clientOptions)).then(response => response.data) }, options));
 export const useGetUsersByIdParticipationsSuspense = (clientOptions, queryKey, options) => useSuspenseQuery(Object.assign({ queryKey: Common.UseGetUsersByIdParticipationsKeyFn(clientOptions, queryKey), queryFn: () => getUsersByIdParticipations(Object.assign({}, clientOptions)).then(response => response.data) }, options));
 export const useGetUsersByIdSubscriptionsSuspense = (clientOptions, queryKey, options) => useSuspenseQuery(Object.assign({ queryKey: Common.UseGetUsersByIdSubscriptionsKeyFn(clientOptions, queryKey), queryFn: () => getUsersByIdSubscriptions(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+export const useGetMessagesByEventIdSuspense = (clientOptions, queryKey, options) => useSuspenseQuery(Object.assign({ queryKey: Common.UseGetMessagesByEventIdKeyFn(clientOptions, queryKey), queryFn: () => getMessagesByEventId(Object.assign({}, clientOptions)).then(response => response.data) }, options));
