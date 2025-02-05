@@ -201,3 +201,41 @@ export const getUsersByIdSubscriptions = (options) => {
     return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
         .get(Object.assign(Object.assign({}, options), { url }));
 };
+/**
+ * Get all messages of an event
+ */
+export const getMessagesByEventId = (options) => {
+    var _a;
+
+    // get the id from the options object
+    const eventId = options && options.id;
+
+    if (!eventId) {
+        throw new Error("ID of the event is not supplied");
+    }
+
+    const url = `/messages/${eventId}`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .get(Object.assign(Object.assign({}, options), { url }));
+}
+
+/**
+ * Create a new message for an event
+ */
+export const postMessagesByEventId = (options) => {
+    var _a;
+
+    // get the id from the options object
+    const eventId = options && options.event;
+
+    console.log(options)
+    if (!eventId) {
+        throw new Error("ID of the event is not supplied");
+    }
+
+    const url = `/messages/${eventId}`;
+
+    return ((_a = options?.client) !== null && _a !== void 0 ? _a : client)
+        .post(Object.assign(Object.assign({}, options), { url }));
+}
