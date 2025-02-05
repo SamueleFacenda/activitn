@@ -8,17 +8,17 @@ import styled from 'styled-components';
 import { NameUserID } from './NameUserID';
 
 const StyledBox = styled(Box)`
-  min-height: 100px; /* Altezza minima */
+  min-height: 100px;
   transition: all 0.3s ease;
-  overflow-wrap: break-word; /* Aggiunto per forzare il ritorno a capo */
-  word-wrap: break-word; /* Aggiunto per compatibilità con più browser */
+  overflow-wrap: break-word; /* Go to the next line if it's too long */
+  word-wrap: break-word; /* For more compability for browsers */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 10px;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
@@ -44,7 +44,7 @@ const Message = ({ message }) => {
       direction="row"
       align="start"
       pad="small"
-      background={isUserMessage ? 'lightgreen' : 'lightgrey'} // TODO: to be changed for light & dark theme
+      background={isUserMessage ? 'my-message' : 'other-message'}
       round="small"
       margin={{ bottom: 'small' }}
     >

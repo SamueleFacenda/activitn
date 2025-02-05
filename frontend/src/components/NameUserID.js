@@ -38,7 +38,7 @@ const NameUserID = ({ id }) => {
   }
   
   const user = isPending ? [] : data;
-  return <Text>{truncateNameLength(user.name)}</Text>;
+  return <Text weight="bold">{truncateNameLength(user.name)}</Text>;
 };
 
 export { NameUserID };
