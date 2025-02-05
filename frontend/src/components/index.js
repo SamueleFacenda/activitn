@@ -17,3 +17,6 @@ export * from './FormFilter';
 export * from './SelectionTag'
 export * from './ShowTutorial'
 export * from './NotLoggedIn'
+export * from './ChatButton'
+export * from './Message'
+export * from './MessageList'
