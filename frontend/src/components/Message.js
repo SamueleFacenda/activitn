@@ -34,6 +34,22 @@ function convertToEuropeanFormat(dateString) {
   return `${day}-${month}-${year} - ${hours}:${minutes}`;
 }
 
+const MESSAGE_MAX_LENGTH = 90;
+// Function to truncate the message if it is too long
+function truncateMessage(text) {
+  if (text.length > MESSAGE_MAX_LENGTH) {
+    return text.slice(0, MESSAGE_MAX_LENGTH) + "...";
+  }
+  return text;
+}
+
+/**
+ * Message component that displays the message in the chat
+ * @param {props} param0 - message 
+ * @param {Object} message - message to display in the chat (the struct of the message should be
+ * {messageContent, userName (as ID of the user), date, isUserMessage})
+ * @returns {JSX.Element} - Message component
+ */
 const Message = ({ message }) => {
   const { messageContent, userName, date, isUserMessage } = message;
   console.log("MESSAGE: ", message);
@@ -55,13 +71,12 @@ const Message = ({ message }) => {
         <Box direction="row" justify="between">
           {/* <Text weight="bold">{userName}</Text> */}
           <NameUserID id={userName} />
-          <Text size="xsmall" color="dark-6">
+          <Text size="xsmall" color="small-text">
             {convertToEuropeanFormat(date)}
           </Text>
         </Box>
-
-        {/* Messaggio che va a capo se necessario */}
-        <Text margin={{ top: "small" }}>{messageContent}</Text>
+        {/* Section with the message content */}
+        <Text margin={{ top: "small" }} size="medium">{truncateMessage(messageContent)}</Text>
       </Box>
     </StyledBox>
   );
