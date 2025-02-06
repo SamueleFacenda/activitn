@@ -6,8 +6,8 @@ info:
     name: GPL
   version: "1"
 servers:
-- url: http://localhost:8000/api/v1
-  description: Localhost
+  - url: http://localhost:8000/api/v1
+    description: Localhost
 
 paths:
   /auth/register:
@@ -17,14 +17,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
-        '201':
+        "201":
           description: User registered
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
 
   /auth/login:
     post:
@@ -33,9 +33,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
-        '200':
+        "200":
           description: Login completed
           content:
             application/json:
@@ -62,25 +62,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Event'
+              $ref: "#/components/schemas/Event"
       responses:
-        '201':
+        "201":
           description: Event created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
+                $ref: "#/components/schemas/Event"
     get:
       summary: Get all events
       responses:
-        '200':
+        "200":
           description: List of events
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Event'
+                  $ref: "#/components/schemas/Event"
 
   /events/{id}:
     get:
@@ -92,13 +92,13 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Event found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
-        '404':
+                $ref: "#/components/schemas/Event"
+        "404":
           description: Event not found
     delete:
       summary: Delete an event by ID
@@ -109,9 +109,9 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        "204":
           description: Event deleted
-        '404':
+        "404":
           description: Event not found
     patch:
       summary: Update an event by ID
@@ -125,15 +125,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Event'
+              $ref: "#/components/schemas/Event"
       responses:
-        '200':
+        "200":
           description: Event updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
-    
+                $ref: "#/components/schemas/Event"
+
   /events/{eventId}/{userId}:
     post:
       summary: Add a user to an event
@@ -152,7 +152,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Successfully added user to event
           content:
             application/json:
@@ -185,7 +185,7 @@ paths:
                             email:
                               type: string
                               example: "johndoe@example.com"
-        '404':
+        "404":
           description: Event not found
           content:
             application/json:
@@ -212,7 +212,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Successfully removed user from event
           content:
             application/json:
@@ -245,7 +245,7 @@ paths:
                             email:
                               type: string
                               example: "johndoe@example.com"
-        '404':
+        "404":
           description: Event or user not found
           content:
             application/json:
@@ -255,7 +255,7 @@ paths:
                   message:
                     type: string
                     example: Event or user not found.
-        '500':
+        "500":
           description: Server error
           content:
             application/json:
@@ -270,14 +270,14 @@ paths:
     get:
       summary: Get all users
       responses:
-        '200':
+        "200":
           description: List of users
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
+                  $ref: "#/components/schemas/User"
 
   /users/{id}:
     get:
@@ -289,13 +289,13 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: User found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-        '404':
+                $ref: "#/components/schemas/User"
+        "404":
           description: User not found
     delete:
       summary: Delete a user by ID
@@ -306,9 +306,9 @@ paths:
           schema:
             type: string
       responses:
-        '204':
+        "204":
           description: User deleted
-        '404':
+        "404":
           description: User not found
     patch:
       summary: Update a user by ID
@@ -322,14 +322,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
-        '200':
+        "200":
           description: User updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
 
   /users/{id}/events:
     get:
@@ -341,14 +341,14 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of events
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Event'
+                  $ref: "#/components/schemas/Event"
 
   /users/{id}/participations:
     get:
@@ -360,14 +360,14 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of events
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Event'
+                  $ref: "#/components/schemas/Event"
 
   /users/{id}/subscriptions:
     get:
@@ -379,16 +379,55 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of events
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Event'
+                  $ref: "#/components/schemas/Event"
 
-
+  /messages/{idEvent}:
+    get:
+      summary: Get all messages for an event
+      parameters:
+        - name: idEvent
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Message"
+        "404":
+          description: Event not found
+    post:
+      summary: Create a new message for an event
+      parameters:
+        - name: idEvent
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Message"
+      responses:
+        "201":
+          description: Message created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
 
 components:
   schemas:
@@ -431,11 +470,11 @@ components:
           type: string
         group:
           type: string
-          description: 'Link to the group'
+          description: "Link to the group"
         organizer:
           type: string
-          description: 'Link to the organizer'
-      
+          description: "Link to the organizer"
+
     Message:
       type: object
       required:
@@ -449,10 +488,10 @@ components:
           type: string
         sender:
           type: string
-          description: 'Link to the sender'
+          description: "Link to the sender"
         event:
           type: string
-          description: 'Link to the event'
+          description: "Link to the event"
         date:
           type: string
           format: date-time
@@ -475,4 +514,4 @@ components:
           type: string
         organizer:
           type: string
-          description: 'Link to the organizer'
+          description: "Link to the organizer"
