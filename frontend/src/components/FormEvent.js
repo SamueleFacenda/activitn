@@ -50,14 +50,14 @@ export function FormEvent({ event }) {
   const { mutate: createEvent } = usePostEvents(undefined, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: UseGetEventsKeyFn() });
-      alert("Event created successfully");
+      alert("Evento creato con successo");
     },
   });
 
   const { mutate: editEvent } = usePatchEventsById(undefined, {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: UseGetEventsKeyFn() });
-      alert("Event edited successfully"); 
+      alert("Evento modificato con successo"); 
     },
   });
 
@@ -106,7 +106,7 @@ export function FormEvent({ event }) {
       background="background-contrast"
       height="max-content"
     >
-      <Heading level="2"> {isCreate ? "Create Event" : "Edit Event"} </Heading>
+      <Heading level="2"> {isCreate ? "Crea Evento" : "Edita Evento"} </Heading>
       <Form
         onSubmit={() => handleSubmit()}
       >
