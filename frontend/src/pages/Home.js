@@ -1,7 +1,6 @@
-import React from 'react';
-import { Box, Heading, Text} from 'grommet';
-import styled from 'styled-components';
-
+import React from "react";
+import { Box, Heading, Text } from "grommet";
+import styled from "styled-components";
 
 // styled component for the section
 const Section = styled(Box)`
@@ -22,18 +21,24 @@ const Home = () => {
       <Box align="center" justify="center" pad="large">
         <Heading level={1}>Activitn</Heading>
         <Text size="large" margin="none">
-          Una piattaforma per connetterti con persone in Trentino. Crea, partecipa e trova eventi di ogni tipo!
+          Una piattaforma per connetterti con persone in Trentino. Crea,
+          partecipa e trova eventi di ogni tipo!
         </Text>
       </Box>
 
       {/* About Section */}
-      <Section >
+      <Section>
         <Heading level={3}>Cos'è Activitn?</Heading>
         <Text size="medium" margin="none">
-          <strong>Activitn</strong> è una piattaforma pensata per aiutarti a connetterti con persone in Trentino, 
-          creando eventi o partecipando a quelli esistenti. Sport, viaggi, giochi da tavolo e molto altro ti aspettano.
-          Potrai creare eventi scegliendo un luogo, data, descrizione e tipologia dell'evento tra i tag prefissati (sport, viaggio, volontariato, musica ...),
-          cercare eventi in base ai tuoi interessi e tempo libero, partecipare a eventi organizzati da altri utenti, modificare e cancellare eventi gia' creati.
+          <strong>Activitn</strong> è una piattaforma pensata per aiutarti a
+          connetterti con persone in Trentino, creando eventi o partecipando a
+          quelli esistenti. Sport, viaggi, giochi da tavolo e molto altro ti
+          aspettano. Potrai creare eventi scegliendo un luogo, data, descrizione
+          e tipologia dell'evento tra i tag prefissati (sport, viaggio,
+          volontariato, musica ...), cercare eventi in base ai tuoi interessi e
+          tempo libero, partecipare a eventi organizzati da altri utenti,
+          modificare e cancellare eventi gia' creati e chattare con i
+          partecipanti dello stesso evento.
         </Text>
       </Section>
 
@@ -41,14 +46,24 @@ const Home = () => {
       <Section>
         <Heading level={3}>Come usare il sito</Heading>
         <Text size="medium">
-          Puoi accedere alle varie sezioni cliccando sulla sidebar. In alcune pagine, troverai un bottone "Show tutorial" che ti aiuterà a capire come utilizzare la pagina. 
-          Inoltre, in alto a destra c'è un pulsante che consente la modalità scura, migliorando ulteriormente la tua esperienza.
+          Puoi accedere alle varie sezioni cliccando sulla sidebar. In alcune
+          pagine, troverai un bottone "Show tutorial" che ti aiuterà a capire
+          come utilizzare la pagina. Inoltre, in alto a destra c'è un pulsante
+          che consente la modalità scura, migliorando ulteriormente la tua
+          esperienza.
         </Text>
       </Section>
 
       {/* Footer */}
-      <Box pad="small" background="background-contrast" align="center" height="small">
-        <Text size="small">Creato da: Samuele Facenda, Yifei Zhang, Thomas Cetto</Text>
+      <Box
+        pad="small"
+        background="background-contrast"
+        align="center"
+        height="small"
+      >
+        <Text size="small">
+          Creato da: Samuele Facenda, Yifei Zhang, Thomas Cetto
+        </Text>
       </Box>
     </Box>
   );
