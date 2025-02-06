@@ -5,13 +5,13 @@ import { Box, Grommet, Page } from "grommet";
 
 import {
   Home,
-  Events,
   UserSettings,
   Login,
   SearchEvent,
   MyEvents,
   CreateEvent,
   ModifyEvent,
+  Chat,
 } from "./pages";
 import { AppBar, SideBar } from "./components";
 import { AuthProvider } from "./hooks/Auth";
@@ -83,6 +83,13 @@ const pages = [
     Icon: Calendar,
     path: "/events/:id",
     Element: EventDescription,
+    displayInSidebar: false,
+  },
+  {
+    label: "Messages",
+    Icon: Calendar,
+    path: "/messages/:id",
+    Element: Chat,
     displayInSidebar: false,
   },
 ];

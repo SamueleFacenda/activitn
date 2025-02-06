@@ -6,3 +6,4 @@ export * from './SearchEvent';
 export * from './MyEvents';
 export * from './CreateEvent';
 export * from './ModifyEvent';
+export * from './Chat';
