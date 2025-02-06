@@ -10,6 +10,7 @@ import {
   ShowErrorSection,
   ButtonModal,
   ShowTutorial,
+  ChatButton,
 } from "../components";
 
 import {
@@ -27,8 +28,8 @@ import { useEffect, useState } from "react";
 /**
  * Component that shows the events that the user has subscribed to. For each event pass the
  * ViewButton and LeaveButton components as buttons
- * @param {boolean} isAuthenticated - is the user authenticated 
- * @param {string} idUser - user id 
+ * @param {boolean} isAuthenticated - is the user authenticated
+ * @param {string} idUser - user id
  * @returns {JSX.Element} - SubscribedEvents component
  */
 function SubscribedEvents(isAuthenticated, idUser) {
@@ -87,15 +88,18 @@ function SubscribedEvents(isAuthenticated, idUser) {
   };
 
   return (
-    <EventGridPagination events={events} buttons={[ViewButton, LeaveButton]} />
+    <EventGridPagination
+      events={events}
+      buttons={[ViewButton, LeaveButton, ChatButton]}
+    />
   );
 }
 
 /**
- * Component that shows the events that the user has created. For each event pass the 
+ * Component that shows the events that the user has created. For each event pass the
  * EditButton, DeleteButton and ViewButton components as buttons
- * @param {boolean} isAuthenticated - is the user authenticated 
- * @param {string} idUser - user id 
+ * @param {boolean} isAuthenticated - is the user authenticated
+ * @param {string} idUser - user id
  * @returns {JSX.Element} - CreatedEvents component
  */
 function CreatedEvents(isAuthenticated, idUser) {
@@ -172,7 +176,7 @@ function CreatedEvents(isAuthenticated, idUser) {
   return (
     <EventGridPagination
       events={events}
-      buttons={[EditButton, DeleteButton, ViewButton]}
+      buttons={[EditButton, DeleteButton, ViewButton, ChatButton]}
     />
   );
 }
@@ -200,7 +204,7 @@ const MyEvents = () => {
       <PageHeader title="My Events" />
       <ShowTutorial
         tutorial={
-          "Qui abbiamo la sezione degli eventi, dove si puo' vedere (Bottone simbolo 👁️) eventi, si puo' disiscriversi dagli eventi (Bottone simobolo ❌) a cui si e' iscritti e infine, si puo' cancellare (Bottone simbolo 🗑️) o modificare (Bottone simbolo ✏️) gli eventi creati."
+          "Qui abbiamo la sezione degli eventi, dove si puo' vedere (Bottone simbolo 👁️) eventi, si puo' disiscriversi dagli eventi (Bottone simobolo ❌) a cui si e' iscritti, chattare (Bottone simbolo 💬) con gli utenti iscritti all'evento e infine, si puo' cancellare (Bottone simbolo 🗑️) o modificare (Bottone simbolo ✏️) gli eventi creati."
         }
       />
       <Box pad="medium" gap="medium">
