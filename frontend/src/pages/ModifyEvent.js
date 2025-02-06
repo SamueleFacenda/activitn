@@ -37,7 +37,7 @@ const ModifyEvent = () => {
   
   return (
     <PageContent>
-      <PageHeader title="Modify event" />
+      <PageHeader title="Modifica Evento" />
       <FormEvent event={event} />
     </PageContent>
   );

@@ -10,7 +10,7 @@ import { Message } from "./Message";
  * @returns {JSX.Element} - MessageList component
  */
 const MessageList = ({ messages }) => {
-  console.log(messages);
+  // console.log(messages);
   return (
     <Box
       pad="medium"

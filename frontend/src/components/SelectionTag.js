@@ -23,7 +23,7 @@ const TAGS = [
  */
 const SelectionTag = ({ value, onChange }) => {
   return (
-    <FormField label="Topic Event" htmlFor="tag">  
+    <FormField label="Topic Evento" htmlFor="tag">  
       <Select 
         options={TAGS}
         value={value}

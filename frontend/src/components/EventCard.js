@@ -103,8 +103,8 @@ export const EventCard = ({ event, isLoading, buttons }) => {
         <Box direction="row" gap="small" margin={{ top: "small" }} wrap={true}>
           {
             /* array of buttons */
-            buttons.map((Btn) => (
-              <Btn event={event} />
+            buttons.map((Btn, index) => (
+              <Btn key={index} event={event} />
             ))
           }
         </Box>

@@ -52,7 +52,7 @@ function truncateMessage(text) {
  */
 const Message = ({ message }) => {
   const { messageContent, userName, date, isUserMessage } = message;
-  console.log("MESSAGE: ", message);
+  // console.log("MESSAGE: ", message);
   return (
     <StyledBox
       direction="row"

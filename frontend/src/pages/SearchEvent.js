@@ -32,7 +32,7 @@ function SearchEvent() {
   if (showFormFilter) { // don't have a tag setted
     return (
       <PageContent>
-        <PageHeader title="Search Event 🔍" />
+        <PageHeader title="Cerca Eventi 🔍" />
         <Box pad="medium" textAlign="center" align="center">
           <FormFileter 
             tag={tag}

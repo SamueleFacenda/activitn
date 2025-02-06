@@ -37,7 +37,11 @@ function LoginBlock({
   showUsername = true,
   buttonText,
 }) {
-  const [value, setValue] = useState({});
+  const [value, setValue] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   return (
     <Form
@@ -51,7 +55,7 @@ function LoginBlock({
           <TextInput
             id={`${id}-name`}
             name="name"
-            placeholder="Enter your username"
+            placeholder="Inserisci il tuo username"
             icon={<User />}
             reverse={true}
           />
@@ -62,7 +66,7 @@ function LoginBlock({
           <TextInput
             id={`${id}-email`}
             name="email"
-            placeholder="Enter your email"
+            placeholder="Inserisci la tua email"
             icon={<Mail />}
             reverse={true}
           />
@@ -73,7 +77,7 @@ function LoginBlock({
           <TextInput
             id={`${id}-password`}
             name="password"
-            placeholder="Enter your password"
+            placeholder="Inserisci la tua password"
             type="password"
             icon={<Lock />}
             reverse={true}
@@ -174,10 +178,10 @@ function Login() {
             buttonText="Log in"
           />
           <Anchor onClick={() => setRotation(-90)} margin="small">
-            Don't have account. SignUp
+            Non hai un account? Registrati
           </Anchor>
           <Anchor onClick={() => setRotation(90)} margin="small">
-            Forgot Password?
+            Dimenticato Password?
           </Anchor>
         </Face>
 
@@ -188,7 +192,7 @@ function Login() {
             buttonText="Register"
           />
           <Anchor onClick={() => setRotation(0)} margin="small">
-            Already have an account. Login
+            Hai gia' un account, fai Login
           </Anchor>
         </Face>
 
@@ -201,7 +205,7 @@ function Login() {
             buttonText="Send"
           />
           <Anchor onClick={() => setRotation(0)} margin="small">
-            Return Login
+            Ritorna al login
           </Anchor>
         </Face>
       </Box>

@@ -229,7 +229,7 @@ export const postMessagesByEventId = (options) => {
     // get the id from the options object
     const eventId = options && options.event;
 
-    console.log(options)
+    // console.log(options)
     if (!eventId) {
         throw new Error("ID of the event is not supplied");
     }

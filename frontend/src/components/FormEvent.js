@@ -84,7 +84,7 @@ export function FormEvent({ event }) {
     const value = getBody();
     // tag should be selected
     if (!tag) {
-      alert("Please select a tag");
+      alert("Inserisci la tipologia dell'evento");
       return;
     }
     if (isCreate) {
@@ -110,29 +110,29 @@ export function FormEvent({ event }) {
       <Form
         onSubmit={() => handleSubmit()}
       >
-        <FormField label="Event Name" htmlFor="name">
+        <FormField label="Nome Evento" htmlFor="name">
           <TextInput
             id="name"
             name="name"
-            placeholder="Enter event name"
+            placeholder="Inserisci il nome dell'evento"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </FormField>
 
-        <FormField label="Description" htmlFor="desc">
+        <FormField label="Descrizione" htmlFor="desc">
           <TextArea
             id="desc"
             name="description"
-            placeholder="Enter event description"
+            placeholder="Inserisci la descrizione dell'evento"
             required
             resize="vertical"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </FormField>
-        <FormField label="Date" htmlFor="date">
+        <FormField label="Data" htmlFor="date">
           <TextInput
             id="date"
             name="date"
@@ -143,11 +143,11 @@ export function FormEvent({ event }) {
           />
         </FormField>
 
-        <FormField label="Location" htmlFor="loc">
+        <FormField label="Luogo" htmlFor="loc">
           <TextInput
             id="loc"
             name="location"
-            placeholder="Enter event location"
+            placeholder="Inserisci il luogo dell'evento"
             required
             value={location}
             onChange={(e) => setLocation(e.target.value)}
