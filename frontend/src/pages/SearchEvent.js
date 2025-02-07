@@ -1,4 +1,4 @@
-import { EventsList, FormFileter, NotLoggedIn } from "../components";
+import { EventsList, FormFilter, NotLoggedIn } from "../components";
 
 import { PageContent, PageHeader, Box } from "grommet";
 import {useState} from "react";
@@ -12,15 +12,15 @@ import { useAuth } from "../hooks/Auth";
  */
 
 function SearchEvent() {
-  const {state} = useAuth();
-  const [tag, setTag] = useState("");
-  const [dateStart, setDateStart] = useState("");
-  const [dateEnd, setDateEnd] = useState("");
+  const {state: authState} = useAuth();
+  const [value, setValue] = useState({
+    tag: "",
+    dateStart: "",
+    dateEnd: "",
+  });
   const [showFormFilter, setShowFormFilter] = useState(true);
 
-  const userId = state.userId;
-
-  if (!userId) {
+  if (!authState.isAuthenticated) {
     return (
       <PageContent>
         <PageHeader title="Search Event 🔍" />
@@ -34,13 +34,9 @@ function SearchEvent() {
       <PageContent>
         <PageHeader title="Cerca Eventi 🔍" />
         <Box pad="medium" textAlign="center" align="center">
-          <FormFileter 
-            tag={tag}
-            setTag={setTag}
-            dateStart={dateStart}
-            setDateStart={setDateStart}
-            dateEnd={dateEnd}
-            setDateEnd={setDateEnd}
+          <FormFilter
+            value={value}
+            setValue={setValue}
             setShowFormFilter={setShowFormFilter}
           />
         </Box>
@@ -50,7 +46,7 @@ function SearchEvent() {
     return (
       <PageContent>
         <PageHeader title="Events" />
-        <EventsList tag={tag} dateStart={dateStart} dateEnd={dateEnd} />
+        <EventsList tag={value.tag} dateStart={value.dateStart} dateEnd={value.dateEnd} />
       </PageContent>
     )
   }

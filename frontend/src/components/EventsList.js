@@ -1,7 +1,7 @@
 import { useGetEvents, usePostEventsByEventIdByUserId } from "../api/queries";
 import { useAuth } from "../hooks/Auth";
 
-import { Box, Button } from "grommet";
+import { Box, Button, Heading } from "grommet";
 
 import { UserAdd } from "grommet-icons";
 
@@ -111,7 +111,7 @@ export function EventsList({ tag, dateStart, dateEnd }) {
   if (events.length === 0) {
     return (
       <Box align="center">
-        <h2>Non ci sono eventi disponibili</h2>
+        <Heading level="2">Non ci sono eventi disponibili</Heading>
       </Box>
     );
   }

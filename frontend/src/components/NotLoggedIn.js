@@ -1,5 +1,6 @@
 import {
-  Box
+  Box,
+  Heading
 } from "grommet";
 
 /**
@@ -9,7 +10,7 @@ import {
 const NotLoggedIn = () => {
   return (
     <Box>
-      <h2>Non sei loggato, puoi farlo cliccando sulla sidebar in Login</h2>
+      <Heading level="2">Non sei loggato, puoi farlo cliccando sulla sidebar in Login</Heading>
     </Box>
   )
 }

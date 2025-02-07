@@ -21,13 +21,13 @@ const TAGS = [
  * 
  * @returns {JSX.Element} A `Select` component from Grommet that allows the user to pick a tag.
  */
-const SelectionTag = ({ value, onChange }) => {
+const SelectionTag = ({name}) => {
   return (
     <FormField label="Topic Evento" htmlFor="tag">  
       <Select 
         options={TAGS}
-        value={value}
-        onChange={({ option }) => onChange(option)} // Updating the value on change
+        name={name}
+        id="tag"
         placeholder="Select a tag..." // Adding a placeholder
       />
     </FormField>

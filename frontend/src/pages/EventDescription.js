@@ -26,8 +26,8 @@ function convertToEuropeanFormat(dateString) {
  * @returns {JSX.Element} - EventDescription component
  */
 const EventDescription = () => {
-  const { state } = useAuth();
-  const { isAuthenticated } = state;
+  const { state: authState } = useAuth();
+  const { isAuthenticated } = authState;
   const { id } = useParams();
 
   const { data, isPending, isError, error } = useGetEventsById(

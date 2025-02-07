@@ -14,11 +14,12 @@ import { useAuth } from "../hooks/Auth";
 import {
   usePostEvents,
   usePatchEventsById,
+  UseGetEventsKeyFn,
 } from "../api/queries";
 import { useQueryClient } from "@tanstack/react-query";
-import { UseGetEventsKeyFn } from "../api/queries";
 
 import { SelectionTag } from "./SelectionTag";
+import { NotLoggedIn } from "./NotLoggedIn";
 
 // function to format the date for the input
 const formatDateForInput = (isoString) => {
@@ -33,18 +34,15 @@ const formatDateForInput = (isoString) => {
  * @returns {JSX.Element} - FormEvent component
  */
 export function FormEvent({ event }) {
-  const [name, setName] = useState(event ? event.name : "");
-  const [description, setDescription] = useState(event ? event.description : "");
-  const [date, setDate] = useState(event ? formatDateForInput(event.date) : "");
-  const [location, setLocation] = useState(event ? event.location : "");
-  const [group, setGroup] = useState(event ? event.group : "");
-  const [tag, setTag] = useState(event ? event.tag : "");
-
-  const handleTagChange = (tag) => {
-    setTag(tag); // Set the selected tag from the dropdown
-  };
-
-  const { state } = useAuth();
+  const [value, setValue] = useState({
+    name: "",
+    description: "",
+    date: "",
+    location: "",
+    group: "",
+    tag: "",
+  });
+  const { state: authState } = useAuth();
 
   const queryClient = useQueryClient();
   const { mutate: createEvent } = usePostEvents(undefined, {
@@ -63,27 +61,15 @@ export function FormEvent({ event }) {
 
   const isCreate = !event;
 
-  if (!state.userId) {
+  if (!authState.isAuthenticated) {
     return (
-      <h2>Not logged in</h2>
+      <NotLoggedIn />
     )
   }
 
-  const getBody = () => {
-    return {
-      "name": name,
-      "description": description,
-      "date": date,
-      "location": location,
-      "group": group,
-      "tag": tag,
-    }
-  }
-
-  const handleSubmit = () => {
-    const value = getBody();
+  const handleSubmit = (value) => {
     // tag should be selected
-    if (!tag) {
+    if (!value.tag) {
       alert("Inserisci la tipologia dell'evento");
       return;
     }
@@ -108,7 +94,10 @@ export function FormEvent({ event }) {
     >
       <Heading level="2"> {isCreate ? "Crea Evento" : "Edita Evento"} </Heading>
       <Form
-        onSubmit={() => handleSubmit()}
+        value={value}
+        onChange={(nextValue) => setValue(nextValue)}
+        onReset={() => setValue({})}
+        onSubmit={({ value }) => handleSubmit(value)}
       >
         <FormField label="Nome Evento" htmlFor="name">
           <TextInput
@@ -116,8 +105,6 @@ export function FormEvent({ event }) {
             name="name"
             placeholder="Inserisci il nome dell'evento"
             required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
           />
         </FormField>
 
@@ -128,8 +115,6 @@ export function FormEvent({ event }) {
             placeholder="Inserisci la descrizione dell'evento"
             required
             resize="vertical"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
           />
         </FormField>
         <FormField label="Data" htmlFor="date">
@@ -137,8 +122,6 @@ export function FormEvent({ event }) {
             id="date"
             name="date"
             type="datetime-local"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
             required
           />
         </FormField>
@@ -149,12 +132,10 @@ export function FormEvent({ event }) {
             name="location"
             placeholder="Inserisci il luogo dell'evento"
             required
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
           />
         </FormField>
 
-        <SelectionTag value={tag} onChange={handleTagChange} />
+        <SelectionTag name="tag" />
 
         {/* <FormField label="Group Size" htmlFor="size">
           <TextInput

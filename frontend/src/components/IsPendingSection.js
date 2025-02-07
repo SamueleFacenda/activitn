@@ -1,4 +1,4 @@
-import {Box, Spinner} from "grommet";
+import {Box, Heading, Spinner} from "grommet";
 
 /**
  * Component that displays a loading message.
@@ -7,7 +7,7 @@ import {Box, Spinner} from "grommet";
 const IsPendingSection = () => {
   return (
     <Box direction="row">
-      <h2>Loading...</h2>
+      <Heading level="2">Loading...</Heading>
       <Spinner />
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Box } from "grommet";
+import { Box, Heading } from "grommet";
 
 /**
  * A simple component to display an error message in a box format.
@@ -11,7 +11,7 @@ import { Box } from "grommet";
 const ShowErrorSection = (error) => {
   return (
     <Box>
-      <h2>Error: {error}</h2>
+      <Heading level="2">Error: {error}</Heading>
     </Box>
   );
 };

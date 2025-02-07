@@ -9,7 +9,7 @@ import {
 } from "grommet";
 import styled from "styled-components";
 
-import { Group, Location, Calendar, Notes, Tag } from "grommet-icons";
+import { Location, Calendar, Notes, Tag } from "grommet-icons";
 
 // maybe replace the icons with: ✍️👥📍📅
 const StyledCard = styled(Card)`

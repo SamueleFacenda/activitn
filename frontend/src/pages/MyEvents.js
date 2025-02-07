@@ -1,4 +1,4 @@
-import { PageContent, PageHeader, Button, Box } from "grommet";
+import { Heading, PageContent, PageHeader, Button, Box } from "grommet";
 
 import { useAuth } from "../hooks/Auth";
 
@@ -11,6 +11,7 @@ import {
   ButtonModal,
   ShowTutorial,
   ChatButton,
+  NotLoggedIn,
 } from "../components";
 
 import {
@@ -65,7 +66,7 @@ function SubscribedEvents(isAuthenticated, idUser) {
 
   if (events === null) {
     // for testing
-    return <h2>No events subscribed</h2>;
+    return <Heading level="2">No events subscribed</Heading>;
   }
 
   const handleLeaveEvent = (event) => {
@@ -135,7 +136,7 @@ function CreatedEvents(isAuthenticated, idUser) {
 
   if (events === null) {
     // for testing
-    return <h2>No events created</h2>;
+    return <Heading level="2">No events created</Heading>;
   }
 
   const handleDelete = (event) => {
@@ -193,9 +194,7 @@ const MyEvents = () => {
 
   if (!userId) {
     return (
-      <Box>
-        <h2>Not logged in ...</h2>
-      </Box>
+      <NotLoggedIn />
     );
   }
 
@@ -208,9 +207,9 @@ const MyEvents = () => {
         }
       />
       <Box pad="medium" gap="medium">
-        <h2>Subscribed Events</h2>
+        <Heading level="2">Subscribed Events</Heading>
         {SubscribedEvents(isAuthenticated, userId)}
-        <h2>Created Events</h2>
+        <Heading level="2">Created Events</Heading>
         {CreatedEvents(isAuthenticated, userId)}
       </Box>
     </PageContent>
