@@ -34,7 +34,7 @@ const formatDateForInput = (isoString) => {
  * @returns {JSX.Element} - FormEvent component
  */
 export function FormEvent({ event }) {
-  const [value, setValue] = useState({
+  const [value, setValue] = useState(event || {
     name: "",
     description: "",
     date: "",
@@ -92,7 +92,7 @@ export function FormEvent({ event }) {
       background="background-contrast"
       height="max-content"
     >
-      <Heading level="2"> {isCreate ? "Crea Evento" : "Edita Evento"} </Heading>
+      <Heading level="2"> {isCreate ? "Crea Evento" : "Modifica Evento"} </Heading>
       <Form
         value={value}
         onChange={(nextValue) => setValue(nextValue)}
