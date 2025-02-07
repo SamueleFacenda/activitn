@@ -1,6 +1,6 @@
 // generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { deleteEventsByEventIdByUserId, deleteEventsById, deleteUsersById, getEvents, getEventsById, getUsers, getUsersById, getUsersByIdEvents, getUsersByIdParticipations, getUsersByIdSubscriptions, patchEventsById, patchUsersById, postAuthLogin, postAuthRegister, postEvents, postEventsByEventIdByUserId } from "../requests/services.gen";
+import { deleteEventsByEventIdByUserId, deleteEventsById, deleteUsersById, getEvents, getEventsById, getUsers, getUsersById, getUsersByIdEvents, getUsersByIdParticipations, getUsersByIdSubscriptions, patchEventsById, patchUsersById, postAuthLogin, postAuthRegister, postEvents, postEventsByEventIdByUserId, getMessagesByEventId, postMessagesByEventId } from "../requests/services.gen";
 import * as Common from "./common";
 export const useGetEvents = (clientOptions = {}, queryKey, options) => useQuery(Object.assign({ queryKey: Common.UseGetEventsKeyFn(clientOptions, queryKey), queryFn: () => getEvents(Object.assign({}, clientOptions)).then(response => response.data) }, options));
 export const useGetEventsById = (clientOptions, queryKey, options) => useQuery(Object.assign({ queryKey: Common.UseGetEventsByIdKeyFn(clientOptions, queryKey), queryFn: () => getEventsById(Object.assign({}, clientOptions)).then(response => response.data) }, options));
@@ -18,3 +18,5 @@ export const usePatchUsersById = (mutationKey, options) => useMutation(Object.as
 export const useDeleteEventsById = (mutationKey, options) => useMutation(Object.assign({ mutationKey: Common.UseDeleteEventsByIdKeyFn(mutationKey), mutationFn: clientOptions => deleteEventsById(clientOptions) }, options));
 export const useDeleteEventsByEventIdByUserId = (mutationKey, options) => useMutation(Object.assign({ mutationKey: Common.UseDeleteEventsByEventIdByUserIdKeyFn(mutationKey), mutationFn: clientOptions => deleteEventsByEventIdByUserId(clientOptions) }, options));
 export const useDeleteUsersById = (mutationKey, options) => useMutation(Object.assign({ mutationKey: Common.UseDeleteUsersByIdKeyFn(mutationKey), mutationFn: clientOptions => deleteUsersById(clientOptions) }, options));
+export const useGetMessagesByEventId = (clientOptions, queryKey, options) => useQuery(Object.assign({ queryKey: Common.UseGetMessagesByEventIdKeyFn(clientOptions, queryKey), queryFn: () => getMessagesByEventId(Object.assign({}, clientOptions)).then(response => response.data) }, options));
+export const usePostMessagesByEventId = (mutationKey, options) => useMutation(Object.assign({ mutationKey: Common.UsePostMessagesByEventIdKeyFn(mutationKey), mutationFn: clientOptions => postMessagesByEventId(clientOptions) }, options));

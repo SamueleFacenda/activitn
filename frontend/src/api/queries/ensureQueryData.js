@@ -1,5 +1,5 @@
 // generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3 
-import { getEvents, getEventsById, getUsers, getUsersById, getUsersByIdEvents, getUsersByIdParticipations, getUsersByIdSubscriptions } from "../requests/services.gen";
+import { getEvents, getEventsById, getUsers, getUsersById, getUsersByIdEvents, getUsersByIdParticipations, getUsersByIdSubscriptions, getMessagesByEventId } from "../requests/services.gen";
 import * as Common from "./common";
 export const ensureUseGetEventsData = (queryClient, clientOptions = {}) => queryClient.ensureQueryData({ queryKey: Common.UseGetEventsKeyFn(clientOptions), queryFn: () => getEvents(Object.assign({}, clientOptions)).then(response => response.data) });
 export const ensureUseGetEventsByIdData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetEventsByIdKeyFn(clientOptions), queryFn: () => getEventsById(Object.assign({}, clientOptions)).then(response => response.data) });
@@ -8,3 +8,4 @@ export const ensureUseGetUsersByIdData = (queryClient, clientOptions) => queryCl
 export const ensureUseGetUsersByIdEventsData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersByIdEventsKeyFn(clientOptions), queryFn: () => getUsersByIdEvents(Object.assign({}, clientOptions)).then(response => response.data) });
 export const ensureUseGetUsersByIdParticipationsData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersByIdParticipationsKeyFn(clientOptions), queryFn: () => getUsersByIdParticipations(Object.assign({}, clientOptions)).then(response => response.data) });
 export const ensureUseGetUsersByIdSubscriptionsData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetUsersByIdSubscriptionsKeyFn(clientOptions), queryFn: () => getUsersByIdSubscriptions(Object.assign({}, clientOptions)).then(response => response.data) });
+export const ensureUseGetMessagesByEventIdData = (queryClient, clientOptions) => queryClient.ensureQueryData({ queryKey: Common.UseGetMessagesByEventIdKeyFn(clientOptions), queryFn: () => getMessagesByEventId(Object.assign({}, clientOptions)).then(response => response.data) });

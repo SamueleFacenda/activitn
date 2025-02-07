@@ -1,78 +1,120 @@
 import React, { useState } from "react";
 
-import { 
-  Anchor, 
-  Box, 
-  Button, 
-  Form, 
-  FormField, 
-  Heading, 
-  PageContent, 
-  PageHeader, 
-  TextInput 
+import {
+  Anchor,
+  Box,
+  Button,
+  Form,
+  FormField,
+  Heading,
+  PageContent,
+  PageHeader,
+  TextInput,
 } from "grommet";
 
-import {
-  usePostAuthLogin,
-  usePostAuthRegister
-} from "../api/queries";
+import { usePostAuthLogin, usePostAuthRegister } from "../api/queries";
+
+import { Mail, Lock, User } from "grommet-icons";
 
 import { useAuth } from "../hooks/Auth";
 
-function LoginBlock({ id, onSubmit, showEmail = true, showPassword = true, showUsername = true, buttonText }) {
-  const [value, setValue] = useState({})
+/**
+ * LoginBlock component that represents the login form block
+ * @param {props} param0 - id, onSubmit, showEmail, showPassword, showUsername, buttonText
+ * @param {string} id - id of the form
+ * @param {function} onSubmit - function to call when the form is submitted
+ * @param {boolean} showEmail - show the email field
+ * @param {boolean} showPassword - show the password field
+ * @param {boolean} showUsername - show the username field
+ * @param {string} buttonText - text of the submit button
+ * @returns {JSX.Element} - LoginBlock component
+ */
+function LoginBlock({
+  id,
+  onSubmit,
+  showEmail = true,
+  showPassword = true,
+  showUsername = true,
+  buttonText,
+}) {
+  const [value, setValue] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   return (
     <Form
       value={value}
-      onChange={nextValue => setValue(nextValue)}
+      onChange={(nextValue) => setValue(nextValue)}
       onReset={() => setValue({})}
       onSubmit={({ value }) => onSubmit(value)}
-      >
-      {showUsername && <FormField label="Username" htmlFor={`${id}-name`}>
-        <TextInput
-          id={`${id}-name`}
-          name="name"
-          placeholder="Enter your username"
-        />
-      </FormField>}
-      {showEmail && <FormField label="Email" htmlFor={`${id}-email`}>
-        <TextInput
-          id={`${id}-email`}
-          name="email"
-          placeholder="Enter your email"
-        />
-      </FormField>}
-      {showPassword && <FormField label="Password" htmlFor={`${id}-password`}>
-        <TextInput
-          id={`${id}-password`}
-          name="password"
-          placeholder="Enter your password"
-          type="password"
-        />
-      </FormField>}
+    >
+      {showUsername && (
+        <FormField label="Username" htmlFor={`${id}-name`}>
+          <TextInput
+            id={`${id}-name`}
+            name="name"
+            placeholder="Inserisci il tuo username"
+            icon={<User />}
+            reverse={true}
+          />
+        </FormField>
+      )}
+      {showEmail && (
+        <FormField label="Email" htmlFor={`${id}-email`}>
+          <TextInput
+            id={`${id}-email`}
+            name="email"
+            placeholder="Inserisci la tua email"
+            icon={<Mail />}
+            reverse={true}
+          />
+        </FormField>
+      )}
+      {showPassword && (
+        <FormField label="Password" htmlFor={`${id}-password`}>
+          <TextInput
+            id={`${id}-password`}
+            name="password"
+            placeholder="Inserisci la tua password"
+            type="password"
+            icon={<Lock />}
+            reverse={true}
+          />
+        </FormField>
+      )}
       <Button type="submit" primary label={buttonText} />
     </Form>
   );
 }
 
-const Face = ({ children, initialRotation, title}) => (
+/**
+ * Face component that represents a face of the prism
+ * @param {props} param0 - children, initialRotation, title
+ * @param {JSX.Element} children - children of the face
+ * @param {number} initialRotation - initial rotation of the face
+ * @param {string} title - title of the face
+ * @returns {JSX.Element} - Face component
+ */
+const Face = ({ children, initialRotation, title }) => (
   <Box
     style={{
       position: "absolute",
       transform: `rotateX(${initialRotation}deg) translateZ(75px)`,
       backfaceVisibility: "hidden",
-    }} 
+    }}
+    background="background-contrast"
     pad={{ horizontal: "large", vertical: "medium" }}
     border={{ size: "xsmall" }}
     round="large"
     elevation="medium"
-    fill>
-
+    fill
+  >
     <Heading level="2">{title}</Heading>
     {children}
   </Box>
-)
+);
 
 /*
  * @returns Component - Return a login page with a prism that rotates to show login, registration, and forgot password
@@ -82,24 +124,36 @@ function Login() {
   const [rotation, setRotation] = useState(0);
   const { login } = useAuth();
 
-  const { mutate: registerMutate  } = usePostAuthRegister(undefined, {
-    onSuccess: () => {
+  // console.log("Login " + login);
+  const { mutate: registerMutate } = usePostAuthRegister(undefined, {
+    onSuccess: (data) => {
+      login(data.data.token, data.data.id);
       console.log("Success");
-    }
+      alert("Registration success");
+    },
+    onError: (error) => {
+      console.log("Login error:", error);
+      alert("Registrazione non riuscita");
+    },
   });
 
   const { mutate: loginMutate } = usePostAuthLogin(undefined, {
-    onSuccess: (data, variables, context) => {
-      login(data.data.token)
-    }
+    onSuccess: (data) => {
+      login(data.data.token, data.data.id);
+      alert("Login success");
+    },
+    onError: (error) => {
+      console.log("Login error:", error);
+      alert("Credenziali non valide");
+    },
   });
 
   const onSubmitRegister = (data) => {
-    registerMutate({body: data});
+    registerMutate({ body: data });
   };
 
   const onSubmitLogin = (data) => {
-    loginMutate({body: data});
+    loginMutate({ body: data });
   };
 
   return (
@@ -107,34 +161,51 @@ function Login() {
       <PageHeader title="Login" />
       <Box
         className="prism"
-        style={{ 
+        style={{
           transform: `rotateX(${rotation}deg)`,
-          transformStyle: "preserve-3d", /* keep the 3d effect for the children components */
+          transformStyle:
+            "preserve-3d" /* keep the 3d effect for the children components */,
           transition: "transform 0.5s ease-in-out",
         }}
-        width="medium" height="500px">
-        
+        width="medium"
+        height="500px"
+      >
         <Face initialRotation={0} title="Log in">
-          <LoginBlock onSubmit={onSubmitLogin} id="login" showUsername={false} buttonText="Log in" />
+          <LoginBlock
+            onSubmit={onSubmitLogin}
+            id="login"
+            showUsername={false}
+            buttonText="Log in"
+          />
           <Anchor onClick={() => setRotation(-90)} margin="small">
-            Don't have account. SignUp
+            Non hai un account? Registrati
           </Anchor>
           <Anchor onClick={() => setRotation(90)} margin="small">
-            Forgot Password?
+            Dimenticato Password?
           </Anchor>
         </Face>
 
         <Face initialRotation={90} title="Registration">
-          <LoginBlock onSubmit={onSubmitRegister} id="register" buttonText="Register" />
+          <LoginBlock
+            onSubmit={onSubmitRegister}
+            id="register"
+            buttonText="Register"
+          />
           <Anchor onClick={() => setRotation(0)} margin="small">
-            Already have an account. Login
+            Hai gia' un account, fai Login
           </Anchor>
         </Face>
 
         <Face initialRotation={-90} title="Forgot Password">
-          <LoginBlock onSubmit={console.log} id="password" showPassword={false} showUsername={false} buttonText="Send" />
+          <LoginBlock
+            onSubmit={console.log}
+            id="password"
+            showPassword={false}
+            showUsername={false}
+            buttonText="Send"
+          />
           <Anchor onClick={() => setRotation(0)} margin="small">
-            Return Login
+            Ritorna al login
           </Anchor>
         </Face>
       </Box>

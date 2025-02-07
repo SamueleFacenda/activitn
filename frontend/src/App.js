@@ -1,22 +1,30 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { 
-  Box,
-  Grommet, 
-  Page,
-} from 'grommet';
+import { Box, Grommet, Page } from "grommet";
 
-import { Home, Events, UserSettings, Login } from './pages';
-import { AppBar, SideBar } from './components';
+import {
+  Home,
+  UserSettings,
+  Login,
+  SearchEvent,
+  MyEvents,
+  CreateEvent,
+  ModifyEvent,
+  Chat,
+} from "./pages";
+import { AppBar, SideBar } from "./components";
 import { AuthProvider } from "./hooks/Auth";
-import { theme } from './style';
+import { theme } from "./style";
 
 import {
   Grommet as GrommetIcon,
   Calendar,
   HomeRounded,
+  Search,
+  User,
 } from "grommet-icons";
+import { EventDescription } from "./pages/EventDescription";
 
 const pages = [
   {
@@ -24,29 +32,66 @@ const pages = [
     Icon: HomeRounded,
     path: "/",
     Element: Home,
-    displayInSidebar: true
-  },
-  {
-    label: "Events",
-    Icon: Calendar,
-    path: "/events",
-    Element: Events,
-    displayInSidebar: true
+    displayInSidebar: true,
   },
   {
     label: "User Settings",
     Icon: UserSettings,
     path: "/usersettings",
     Element: UserSettings,
-    displayInSidebar: false
+    displayInSidebar: false,
   },
-  { // for now put the login page accessible from the sidebar
+  {
+    // for now put the login page accessible from the sidebar
     label: "Login",
-    Icon: UserSettings, // TODO: Change this icon
+    Icon: User, // TODO: Change this icon
     path: "/login",
     Element: Login,
-    displayInSidebar: true
-  }
+    displayInSidebar: true,
+  },
+  {
+    // for now put the login page accessible from the sidebar
+    label: "Search ",
+    Icon: Search, // TODO: Change this icon
+    path: "/events",
+    Element: SearchEvent,
+    displayInSidebar: true,
+  },
+  {
+    label: "My Events",
+    Icon: Calendar,
+    path: "/myevents",
+    Element: MyEvents,
+    displayInSidebar: true,
+  },
+  {
+    label: "Create Event",
+    Icon: Calendar,
+    path: "/create-event",
+    Element: CreateEvent,
+    displayInSidebar: true,
+  },
+  {
+    label: "Modify Event",
+    Icon: Calendar,
+    path: "/modify-event/:id",
+    Element: ModifyEvent,
+    displayInSidebar: false,
+  },
+  {
+    label: "Get event by ID",
+    Icon: Calendar,
+    path: "/events/:id",
+    Element: EventDescription,
+    displayInSidebar: false,
+  },
+  {
+    label: "Messages",
+    Icon: Calendar,
+    path: "/messages/:id",
+    Element: Chat,
+    displayInSidebar: false,
+  },
 ];
 
 function App() {
@@ -58,14 +103,19 @@ function App() {
       <AuthProvider>
         <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
           <Box fill>
-            <AppBar 
-              toggleSideBar={() => setShowSidebar(!showSidebar)} 
-              appName="Activitn" 
-              appIcon={<GrommetIcon/>} 
-              dark={dark} 
-              setDark={setDark} />
+            <AppBar
+              toggleSideBar={() => setShowSidebar(!showSidebar)}
+              appName="Activitn"
+              appIcon={<GrommetIcon />}
+              dark={dark}
+              setDark={setDark}
+            />
             <Box direction="row-responsive" fill>
-              <SideBar pages={pages} showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+              <SideBar
+                pages={pages}
+                showSidebar={showSidebar}
+                setShowSidebar={setShowSidebar}
+              />
               <Page overflow="auto">
                 <Routes>
                   {pages.map(({ path, Element }) => (
