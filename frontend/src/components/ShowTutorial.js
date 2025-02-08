@@ -15,7 +15,7 @@ const ShowTutorial = ({ tutorial }) => {
     <Box>
       <Button
         icon={<Catalog />}
-        label="Show Tutorial"
+        label="Guarda Tutorial"
         onClick={() => setShowTutorial(!showTutorial)}
         primary
       />

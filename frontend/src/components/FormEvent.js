@@ -42,6 +42,10 @@ export function FormEvent({ event }) {
     group: "",
     tag: "",
   });
+
+  if (value.date) { // if the date exists, format it
+    value.date = formatDateForInput(value.date);
+  }
   const { state: authState } = useAuth();
 
   const queryClient = useQueryClient();
@@ -73,6 +77,14 @@ export function FormEvent({ event }) {
       alert("Inserisci la tipologia dell'evento");
       return;
     }
+
+    // the date should be in the future
+    const date = new Date(value.date);
+    if (date < new Date()) {
+      alert("La data dell'evento deve essere nel futuro");
+      return;
+    }
+
     if (isCreate) {
       createEvent({ body: value });
     } else {
