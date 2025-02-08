@@ -66,6 +66,7 @@ function LoginBlock({
           <TextInput
             id={`${id}-email`}
             name="email"
+            type="email"
             placeholder="Inserisci la tua email"
             icon={<Mail />}
             reverse={true}
@@ -79,6 +80,7 @@ function LoginBlock({
             name="password"
             placeholder="Inserisci la tua password"
             type="password"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$"
             icon={<Lock />}
             reverse={true}
           />
@@ -129,18 +131,18 @@ function Login() {
     onSuccess: (data) => {
       login(data.data.token, data.data.id);
       console.log("Success");
-      alert("Registration success");
+      alert("Registrazione avvenuta con successo");
     },
     onError: (error) => {
       console.log("Login error:", error);
-      alert("Registrazione non riuscita");
+      alert("Errore nella registrazione");
     },
   });
 
   const { mutate: loginMutate } = usePostAuthLogin(undefined, {
     onSuccess: (data) => {
       login(data.data.token, data.data.id);
-      alert("Login success");
+      alert("Login avvenuto con successo");
     },
     onError: (error) => {
       console.log("Login error:", error);

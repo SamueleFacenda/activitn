@@ -6,11 +6,11 @@ import eventRoutes from './routes/eventRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import tokenChecker from './middlewares/tokenChecker.js';
-
+import cors from 'cors';
 
 const app = express();
 app.use(json()); // Middleware to parse JSON bodies
-
+app.use(cors())
 connectDB();
 
 app.use('/api/v1/auth', authRoutes);
