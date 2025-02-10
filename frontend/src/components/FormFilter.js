@@ -92,7 +92,7 @@ const FormFilter = ({
 
         <SelectionTag name="tag" />
 
-        <FormField label="Start time" htmlFor="startTime">
+        <FormField label="Data inizio" htmlFor="startTime">
           <TextInput
             type="datetime-local"
             id="startTime"
@@ -101,7 +101,7 @@ const FormFilter = ({
           />
         </FormField>
 
-        <FormField label="End time" htmlFor="endTime">
+        <FormField label="Date fine" htmlFor="endTime">
           <TextInput
             type="datetime-local"
             id="endTime"

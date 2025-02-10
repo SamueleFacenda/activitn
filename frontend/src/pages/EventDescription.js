@@ -61,6 +61,7 @@ const EventDescription = () => {
 
       <EventDetail label="Data:" TextComp={() => <Text>{convertToEuropeanFormat(event.date)}</Text>} />
       <EventDetail label="Luogo:" TextComp={() => <Text>{event.location}</Text>} />
+      <EventDetail label="Topic:" TextComp={() => <Text>{event.tag}</Text>} />
       <EventDetail label="Organizzatore:" TextComp={() => <NameUserID id={event.organizer} />} />
 
       <EventDetail 
