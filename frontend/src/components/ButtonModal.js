@@ -4,7 +4,7 @@ import { Box, Button, Layer, Text } from "grommet";
 import { Trash } from "grommet-icons";
 
 const Messages = {
-  DELETE_EVENT: "Are you sure you want to delete this event?",
+  DELETE_EVENT: "Sei sicuro di cancellare questo evento?",
 };
 
 const ButtonModal = ({ typeAction, event, methodApply }) => {

@@ -70,6 +70,8 @@ function SubscribedEvents(isAuthenticated, idUser) {
   }
 
   const handleLeaveEvent = (event) => {
+    // console.log(event);
+    alert("Disiscritto dall'evento " + event.name);
     leaveEvent({ eventId: event._id, userId: idUser });
     // remove the event from the list
     const newEvents = events.filter((e) => e._id !== event._id);
@@ -136,7 +138,7 @@ function CreatedEvents(isAuthenticated, idUser) {
 
   if (events === null) {
     // for testing
-    return <Heading level="2">No events created</Heading>;
+    return <Heading level="2">Nessun evento creato</Heading>;
   }
 
   const handleDelete = (event) => {
@@ -207,9 +209,9 @@ const MyEvents = () => {
         }
       />
       <Box pad="medium" gap="medium">
-        <Heading level="2">Subscribed Events</Heading>
+        <Heading level="2">Eventi partecipati</Heading>
         {SubscribedEvents(isAuthenticated, userId)}
-        <Heading level="2">Created Events</Heading>
+        <Heading level="2">Eventi creati</Heading>
         {CreatedEvents(isAuthenticated, userId)}
       </Box>
     </PageContent>
