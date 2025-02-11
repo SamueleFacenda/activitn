@@ -19,5 +19,5 @@ app.use('/api/v1/events', tokenChecker, eventRoutes);
 app.use('/api/v1/messages', tokenChecker, messageRoutes);
 
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

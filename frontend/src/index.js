@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { client } from "./api/requests/services.gen";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/api/v1"
+
 client.setConfig({
-  baseUrl: "http://localhost:8000/api/v1",
+  baseUrl: API_URL,
 });
 
 client.interceptors.request.use((config) => {
