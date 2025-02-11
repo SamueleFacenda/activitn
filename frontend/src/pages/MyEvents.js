@@ -205,11 +205,11 @@ const MyEvents = () => {
       <PageHeader title="My Events" />
       <ShowTutorial
         tutorial={
-          "Qui abbiamo la sezione degli eventi, dove si puo' vedere (Bottone simbolo 👁️) eventi, si puo' disiscriversi dagli eventi (Bottone simobolo ❌) a cui si e' iscritti, chattare (Bottone simbolo 💬) con gli utenti iscritti all'evento e infine, si puo' cancellare (Bottone simbolo 🗑️) o modificare (Bottone simbolo ✏️) gli eventi creati."
+          "Qui abbiamo la sezione degli eventi, dove si puo' ispezionare (Bottone simbolo 👁️)  gli eventi, ci si puo' disiscrivere dagli eventi (Bottone simobolo ❌) a cui si e' iscritti, chattare (Bottone simbolo 💬) con gli utenti iscritti all'evento e infine, si puo' cancellare (Bottone simbolo 🗑️) o modificare (Bottone simbolo ✏️) gli eventi creati."
         }
       />
       <Box pad="medium" gap="medium">
-        <Heading level="2">Eventi partecipati</Heading>
+        <Heading level="2">Eventi a cui sei iscritto</Heading>
         {SubscribedEvents(isAuthenticated, userId)}
         <Heading level="2">Eventi creati</Heading>
         {CreatedEvents(isAuthenticated, userId)}

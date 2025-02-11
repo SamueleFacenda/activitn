@@ -10,7 +10,7 @@ import {
 const NotLoggedIn = () => {
   return (
     <Box>
-      <Heading level="2">Non sei loggato, puoi farlo cliccando sulla sidebar in Login</Heading>
+      <Heading level="2">Non sei autenticato, puoi farlo cliccando sulla sidebar in Login</Heading>
     </Box>
   )
 }
