@@ -22,28 +22,48 @@
       let pkgs = (nixpkgs.legacyPackages.${system}.extend overlay); in
       {
 
-        packages = rec {
-          default = activitn;
-          activitn = pkgs.buildNpmPackage {
-            pname = "activitn";
-            src = ./.;
-            inherit version;
-
+        packages =
+          let
             npmDeps = pkgs.importNpmLock {
               npmRoot = ./.;
             };
+          in
+          rec {
+            default = backend;
+            backend = pkgs.buildNpmPackage {
+              pname = "activitn";
+              src = ./.;
+              inherit version npmDeps;
 
-            dontNpmBuild = true;
+              dontNpmBuild = true;
+              npmConfigHook = pkgs.importNpmLock.npmConfigHook;
 
-            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+              meta = {
+                description = "Application for publishing and participating to events: backend";
+                homepage = "https://github.com/SamueleFacenda/activitn";
+                license = pkgs.lib.licenses.gpl3Only;
+              };
+            };
+            frontend = pkgs.buildNpmPackage {
+              pname = "activitn";
+              src = ./.;
+              inherit version npmDeps;
+              npmFlags = "--workspace frontend";
 
-            meta = {
-              description = "Application for publishing and participating to events";
-              homepage = "https://github.com/SamueleFacenda/activitn";
-              license = pkgs.lib.licenses.gpl3Only;
+              npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+              dontNpmInstall = true;
+              installPhase = ''
+                mkdir -p $out
+                cp -r frontend/build/* $out
+              '';
+
+              meta = {
+                description = "Application for publishing and participating to events: frontend";
+                homepage = "https://github.com/SamueleFacenda/activitn";
+                license = pkgs.lib.licenses.gpl3Only;
+              };
             };
           };
-        };
 
         apps = {
           default = {
@@ -56,15 +76,23 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               importNpmLock.hooks.linkNodeModulesHook
+              nodePackages.create-react-app
               nodejs
             ];
 
-            npmDeps = pkgs.importNpmLock.buildNodeModules {
-              # npmRoot = ./.; # avoid rebuilding when js code changes
-              package = pkgs.lib.importJSON ./package.json;
-              packageLock = pkgs.lib.importJSON ./package-lock.json;
+            npmDeps = (pkgs.importNpmLock.buildNodeModules {
+              npmRoot = ./.; # avoid rebuilding when js code changes
+              # package = pkgs.lib.importJSON ./package.json;
+              # packageLock = pkgs.lib.importJSON ./package-lock.json;
               inherit (pkgs) nodejs;
-            };
+              derivationArgs = {
+                postPatch = ''
+                  mkdir frontend backend
+                  cp --no-preserve=mode ${frontend/package.json} frontend/package.json
+                  cp --no-preserve=mode ${backend/package.json} backend/package.json
+                '';
+              };
+            });
 
             buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
             # hack to make linkNodeModulesHook work (it's not applied if there already is a shellHook)

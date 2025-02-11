@@ -5,3 +5,4 @@ prova.py
 /.direnv
 /result
 .env
+*.ts
