@@ -6,3 +6,4 @@ prova.py
 /result
 .env
 *.ts
+*.bkp
